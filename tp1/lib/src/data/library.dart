@@ -9,27 +9,28 @@ final libraryInstance = Library()
   ..addMedia(
     title: 'Left Hand of Darkness',
     authorName: 'Ursula K. Le Guin',
+    isFavoris: false,
     // isPopular: true,
     // isNew: true)
   )
   ..addMedia(
     title: 'Too Like the Lightning',
     authorName: 'Ada Palmer',
+    isFavoris: true,
     // isPopular: false,
     // isNew: true)
   )
+  ..addMedia(title: 'Kindred', authorName: 'Octavia E. Butler', isFavoris: false
+      // isPopular: true,
+      // isNew: false)
+      )
   ..addMedia(
-    title: 'Kindred',
-    authorName: 'Octavia E. Butler',
-    // isPopular: true,
-    // isNew: false)
-  )
-  ..addMedia(
-    title: 'The Lathe of Heaven',
-    authorName: 'Ursula K. Le Guin',
-    // isPopular: false,
-    // isNew: false);
-  );
+      title: 'The Lathe of Heaven',
+      authorName: 'Ursula K. Le Guin',
+      isFavoris: true
+      // isPopular: false,
+      // isNew: false);
+      );
 
 class Library {
   final List<Media> allMedias = [];
@@ -38,6 +39,7 @@ class Library {
   void addMedia({
     required String title,
     required String authorName,
+    required bool isFavoris,
     // required bool isPopular,
     // required bool isNew,
   }) {
@@ -49,19 +51,23 @@ class Library {
         return value;
       },
     );
-    var media = Media(allMedias.length, title, author);
+    var media = Media(allMedias.length, title, author, isFavoris);
 
     author.medias.add(media);
     allMedias.add(media);
   }
 
-  Media getBook(String id) {
+  Media getMedia(String id) {
     return allMedias[int.parse(id)];
   }
 
   // List<Media> get popularBooks => [
   //       ...allMedias.where((media) => media.isPopular),
   //     ];
+
+  List<Media> get favoriteMedias => [
+        ...allMedias.where((media) => media.isFavoris),
+      ];
 
   // List<Book> get newBooks => [
   //       ...allMedias.where((book) => book.isNew),

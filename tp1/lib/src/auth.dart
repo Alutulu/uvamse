@@ -5,7 +5,7 @@
 import 'package:flutter/widgets.dart';
 
 /// A mock authentication service
-class BookstoreAuth extends ChangeNotifier {
+class MediastoreAuth extends ChangeNotifier {
   bool _signedIn = false;
 
   bool get signedIn => _signedIn;
@@ -28,18 +28,18 @@ class BookstoreAuth extends ChangeNotifier {
 
   @override
   bool operator ==(Object other) =>
-      other is BookstoreAuth && other._signedIn == _signedIn;
+      other is MediastoreAuth && other._signedIn == _signedIn;
 
   @override
   int get hashCode => _signedIn.hashCode;
 
-  static BookstoreAuth of(BuildContext context) => context
-      .dependOnInheritedWidgetOfExactType<BookstoreAuthScope>()!
+  static MediastoreAuth of(BuildContext context) => context
+      .dependOnInheritedWidgetOfExactType<MediastoreAuthScope>()!
       .notifier!;
 }
 
-class BookstoreAuthScope extends InheritedNotifier<BookstoreAuth> {
-  const BookstoreAuthScope({
+class MediastoreAuthScope extends InheritedNotifier<MediastoreAuth> {
+  const MediastoreAuthScope({
     required super.notifier,
     required super.child,
     super.key,

@@ -5,11 +5,11 @@
 import 'package:flutter/material.dart';
 
 import '../data.dart';
-import '../widgets/book_list.dart';
+import '../widgets/media_list.dart';
 
 class AuthorDetailsScreen extends StatelessWidget {
   final Author author;
-  final ValueChanged<Book> onBookTapped;
+  final ValueChanged<Media> onBookTapped;
 
   const AuthorDetailsScreen({
     super.key,
@@ -26,8 +26,8 @@ class AuthorDetailsScreen extends StatelessWidget {
           child: Column(
             children: [
               Expanded(
-                child: BookList(
-                  books: author.books,
+                child: MediaList(
+                  medias: author.medias,
                   onTap: (book) {
                     onBookTapped(book);
                   },

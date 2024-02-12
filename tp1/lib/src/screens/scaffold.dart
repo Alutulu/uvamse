@@ -6,11 +6,11 @@ import 'package:adaptive_navigation/adaptive_navigation.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-class BookstoreScaffold extends StatelessWidget {
+class MediastoreScaffold extends StatelessWidget {
   final Widget child;
   final int selectedIndex;
 
-  const BookstoreScaffold({
+  const MediastoreScaffold({
     required this.child,
     required this.selectedIndex,
     super.key,
@@ -25,14 +25,14 @@ class BookstoreScaffold extends StatelessWidget {
         selectedIndex: selectedIndex,
         body: child,
         onDestinationSelected: (idx) {
-          if (idx == 0) goRouter.go('/books/popular');
+          if (idx == 0) goRouter.go('/medias/popular');
           if (idx == 1) goRouter.go('/authors');
           if (idx == 2) goRouter.go('/settings');
         },
         destinations: const [
           AdaptiveScaffoldDestination(
-            title: 'Books',
-            icon: Icons.book,
+            title: 'Home',
+            icon: Icons.home,
           ),
           AdaptiveScaffoldDestination(
             title: 'Authors',

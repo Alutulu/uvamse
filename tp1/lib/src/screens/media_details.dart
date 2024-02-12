@@ -9,36 +9,36 @@ import 'package:url_launcher/link.dart';
 import '../data.dart';
 import 'author_details.dart';
 
-class BookDetailsScreen extends StatelessWidget {
-  final Book? book;
+class MediaDetailsScreen extends StatelessWidget {
+  final Media? media;
 
-  const BookDetailsScreen({
+  const MediaDetailsScreen({
     super.key,
-    this.book,
+    this.media,
   });
 
   @override
   Widget build(BuildContext context) {
-    if (book == null) {
+    if (media == null) {
       return const Scaffold(
         body: Center(
-          child: Text('No book found.'),
+          child: Text('No media found.'),
         ),
       );
     }
     return Scaffold(
       appBar: AppBar(
-        title: Text(book!.title),
+        title: Text(media!.title),
       ),
       body: Center(
         child: Column(
           children: [
             Text(
-              book!.title,
+              media!.title,
               style: Theme.of(context).textTheme.headlineMedium,
             ),
             Text(
-              book!.author.name,
+              media!.author.name,
               style: Theme.of(context).textTheme.titleMedium,
             ),
             TextButton(
@@ -47,9 +47,9 @@ class BookDetailsScreen extends StatelessWidget {
                 Navigator.of(context).push<void>(
                   MaterialPageRoute<void>(
                     builder: (context) => AuthorDetailsScreen(
-                      author: book!.author,
-                      onBookTapped: (book) {
-                        GoRouter.of(context).go('/books/all/book/${book.id}');
+                      author: media!.author,
+                      onBookTapped: (media) {
+                        GoRouter.of(context).go('/home/all/media/${media.id}');
                       },
                     ),
                   ),
@@ -57,7 +57,7 @@ class BookDetailsScreen extends StatelessWidget {
               },
             ),
             Link(
-              uri: Uri.parse('/authors/author/${book!.author.id}'),
+              uri: Uri.parse('/authors/author/${media!.author.id}'),
               builder: (context, followLink) => TextButton(
                 onPressed: followLink,
                 child: const Text('View author (Link)'),

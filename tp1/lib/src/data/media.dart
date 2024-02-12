@@ -8,8 +8,9 @@ class Media {
   final int id;
   final String title;
   final Author author;
+  final bool isFavoris;
   // final bool isPopular;
   // final bool isNew;
 
-  Media(this.id, this.title, this.author);
+  Media(this.id, this.title, this.author, this.isFavoris);
 }

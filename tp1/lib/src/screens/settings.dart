@@ -52,7 +52,7 @@ class SettingsContent extends StatelessWidget {
             ),
             FilledButton(
               onPressed: () {
-                BookstoreAuth.of(context).signOut();
+                MediastoreAuth.of(context).signOut();
               },
               child: const Text('Sign out'),
             ),
