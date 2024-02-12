@@ -59,7 +59,7 @@ class _BookstoreState extends State<Bookstore> {
             builder: (context, state, child) {
               return BookstoreScaffold(
                 selectedIndex: switch (state.uri.path) {
-                  var p when p.startsWith('/books') => 0,
+                  var p when p.startsWith('/home') => 0,
                   var p when p.startsWith('/authors') => 1,
                   var p when p.startsWith('/settings') => 2,
                   _ => 0,
@@ -78,16 +78,16 @@ class _BookstoreState extends State<Bookstore> {
                       return BooksScreen(
                         onTap: (idx) {
                           GoRouter.of(context).go(switch (idx) {
-                            0 => '/books/popular',
-                            1 => '/books/new',
-                            2 => '/books/all',
-                            _ => '/books/popular',
+                            0 => '/home/popular',
+                            1 => '/home/new',
+                            2 => '/home/all',
+                            _ => '/home/popular',
                           });
                         },
                         selectedIndex: switch (state.uri.path) {
-                          var p when p.startsWith('/books/popular') => 0,
-                          var p when p.startsWith('/books/new') => 1,
-                          var p when p.startsWith('/books/all') => 2,
+                          var p when p.startsWith('/home/popular') => 0,
+                          var p when p.startsWith('/home/new') => 1,
+                          var p when p.startsWith('/home/all') => 2,
                           _ => 0,
                         },
                         child: child,
@@ -97,7 +97,7 @@ class _BookstoreState extends State<Bookstore> {
                 },
                 routes: [
                   GoRoute(
-                    path: '/books/popular',
+                    path: '/home/popular',
                     pageBuilder: (context, state) {
                       return FadeTransitionPage<dynamic>(
                         // Use a builder to get the correct BuildContext
@@ -109,7 +109,7 @@ class _BookstoreState extends State<Bookstore> {
                               books: libraryInstance.popularBooks,
                               onTap: (book) {
                                 GoRouter.of(context)
-                                    .go('/books/popular/book/${book.id}');
+                                    .go('/home/popular/book/${book.id}');
                               },
                             );
                           },

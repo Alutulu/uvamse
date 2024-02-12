@@ -3,39 +3,43 @@
 // BSD-style license that can be found in the LICENSE file.
 
 import 'author.dart';
-import 'book.dart';
+import 'media.dart';
 
 final libraryInstance = Library()
-  ..addBook(
-      title: 'Left Hand of Darkness',
-      authorName: 'Ursula K. Le Guin',
-      isPopular: true,
-      isNew: true)
-  ..addBook(
-      title: 'Too Like the Lightning',
-      authorName: 'Ada Palmer',
-      isPopular: false,
-      isNew: true)
-  ..addBook(
-      title: 'Kindred',
-      authorName: 'Octavia E. Butler',
-      isPopular: true,
-      isNew: false)
-  ..addBook(
-      title: 'The Lathe of Heaven',
-      authorName: 'Ursula K. Le Guin',
-      isPopular: false,
-      isNew: false);
+  ..addMedia(
+    title: 'Left Hand of Darkness',
+    authorName: 'Ursula K. Le Guin',
+    // isPopular: true,
+    // isNew: true)
+  )
+  ..addMedia(
+    title: 'Too Like the Lightning',
+    authorName: 'Ada Palmer',
+    // isPopular: false,
+    // isNew: true)
+  )
+  ..addMedia(
+    title: 'Kindred',
+    authorName: 'Octavia E. Butler',
+    // isPopular: true,
+    // isNew: false)
+  )
+  ..addMedia(
+    title: 'The Lathe of Heaven',
+    authorName: 'Ursula K. Le Guin',
+    // isPopular: false,
+    // isNew: false);
+  );
 
 class Library {
-  final List<Book> allBooks = [];
+  final List<Media> allMedias = [];
   final List<Author> allAuthors = [];
 
-  void addBook({
+  void addMedia({
     required String title,
     required String authorName,
-    required bool isPopular,
-    required bool isNew,
+    // required bool isPopular,
+    // required bool isNew,
   }) {
     var author = allAuthors.firstWhere(
       (author) => author.name == authorName,
@@ -45,21 +49,21 @@ class Library {
         return value;
       },
     );
-    var book = Book(allBooks.length, title, isPopular, isNew, author);
+    var media = Media(allMedias.length, title, author);
 
-    author.books.add(book);
-    allBooks.add(book);
+    author.medias.add(media);
+    allMedias.add(media);
   }
 
-  Book getBook(String id) {
-    return allBooks[int.parse(id)];
+  Media getBook(String id) {
+    return allMedias[int.parse(id)];
   }
 
-  List<Book> get popularBooks => [
-        ...allBooks.where((book) => book.isPopular),
-      ];
+  // List<Media> get popularBooks => [
+  //       ...allMedias.where((media) => media.isPopular),
+  //     ];
 
-  List<Book> get newBooks => [
-        ...allBooks.where((book) => book.isNew),
-      ];
+  // List<Book> get newBooks => [
+  //       ...allMedias.where((book) => book.isNew),
+  //     ];
 }
