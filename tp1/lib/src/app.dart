@@ -13,7 +13,6 @@ import 'screens/media_details.dart';
 import 'screens/medias.dart';
 import 'screens/scaffold.dart';
 import 'screens/about.dart';
-import 'screens/sign_in.dart';
 import 'widgets/media_list.dart';
 import 'widgets/fade_transition_page.dart';
 
