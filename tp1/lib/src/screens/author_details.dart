@@ -9,12 +9,12 @@ import '../widgets/media_list.dart';
 
 class AuthorDetailsScreen extends StatelessWidget {
   final Author author;
-  final ValueChanged<Media> onBookTapped;
+  final ValueChanged<Media> onMediaTapped;
 
   const AuthorDetailsScreen({
     super.key,
     required this.author,
-    required this.onBookTapped,
+    required this.onMediaTapped,
   });
 
   @override
@@ -28,8 +28,8 @@ class AuthorDetailsScreen extends StatelessWidget {
               Expanded(
                 child: MediaList(
                   medias: author.medias,
-                  onTap: (book) {
-                    onBookTapped(book);
+                  onTap: (media) {
+                    onMediaTapped(media);
                   },
                 ),
               ),

@@ -2,6 +2,7 @@
 // for details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
+import 'package:bookstore/src/screens/home.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -35,7 +36,7 @@ class _MediastoreState extends State<Mediastore> {
     return MaterialApp.router(
       routerConfig: GoRouter(
         debugLogDiagnostics: true,
-        initialLocation: '/home/all',
+        initialLocation: '/home',
         routes: [
           ShellRoute(
             navigatorKey: appShellNavigatorKey,
@@ -43,14 +44,21 @@ class _MediastoreState extends State<Mediastore> {
               return MediastoreScaffold(
                 selectedIndex: switch (state.uri.path) {
                   var p when p.startsWith('/home') => 0,
-                  var p when p.startsWith('/authors') => 1,
-                  var p when p.startsWith('/settings') => 2,
+                  var p when p.startsWith('/media') => 1,
+                  var p when p.startsWith('/authors') => 2,
+                  var p when p.startsWith('/about') => 3,
                   _ => 0,
                 },
                 child: child,
               );
             },
             routes: [
+              GoRoute(
+                  path: '/home',
+                  pageBuilder: (context, state) {
+                    return FadeTransitionPage<dynamic>(
+                        key: state.pageKey, child: const HomeScreen());
+                  }),
               ShellRoute(
                 pageBuilder: (context, state, child) {
                   return FadeTransitionPage<dynamic>(
@@ -60,16 +68,14 @@ class _MediastoreState extends State<Mediastore> {
                       return MediasScreen(
                         onTap: (idx) {
                           GoRouter.of(context).go(switch (idx) {
-                            0 => '/home/all',
-                            1 => '/home/favoris',
-                            // 2 => '/home/all',
-                            _ => '/home/all',
+                            0 => '/media/all',
+                            1 => '/media/favoris',
+                            _ => '/media/all',
                           });
                         },
                         selectedIndex: switch (state.uri.path) {
-                          var p when p.startsWith('/home/all') => 0,
-                          var p when p.startsWith('/home/favoris') => 1,
-                          // var p when p.startsWith('/home/all') => 2,
+                          var p when p.startsWith('/media/all') => 0,
+                          var p when p.startsWith('/media/favoris') => 1,
                           _ => 0,
                         },
                         child: child,
@@ -79,7 +85,7 @@ class _MediastoreState extends State<Mediastore> {
                 },
                 routes: [
                   GoRoute(
-                    path: '/home/all',
+                    path: '/media/all',
                     pageBuilder: (context, state) {
                       return FadeTransitionPage<dynamic>(
                         key: state.pageKey,
@@ -90,7 +96,7 @@ class _MediastoreState extends State<Mediastore> {
                               medias: libraryInstance.allMedias,
                               onTap: (media) {
                                 GoRouter.of(context)
-                                    .go('/home/all/media/${media.id}');
+                                    .go('/media/all/media/${media.id}');
                               },
                             );
                           },
@@ -111,7 +117,7 @@ class _MediastoreState extends State<Mediastore> {
                     ],
                   ),
                   GoRoute(
-                    path: '/home/favoris',
+                    path: '/media/favoris',
                     pageBuilder: (context, state) {
                       return FadeTransitionPage<dynamic>(
                         // Use a builder to get the correct BuildContext
@@ -122,7 +128,7 @@ class _MediastoreState extends State<Mediastore> {
                               medias: libraryInstance.favoriteMedias,
                               onTap: (media) {
                                 GoRouter.of(context)
-                                    .go('/home/favoris/media/${media.id}');
+                                    .go('/media/favoris/media/${media.id}');
                               },
                             );
                           },
@@ -171,9 +177,9 @@ class _MediastoreState extends State<Mediastore> {
                       return Builder(builder: (context) {
                         return AuthorDetailsScreen(
                           author: author,
-                          onBookTapped: (media) {
+                          onMediaTapped: (media) {
                             GoRouter.of(context)
-                                .go('/home/all/media/${media.id}');
+                                .go('/media/all/media/${media.id}');
                           },
                         );
                       });
