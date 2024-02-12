@@ -41,7 +41,10 @@ class _medialist extends State<MediaList> {
             medias[index].title,
           ),
           subtitle: Text(
-            medias[index].author.name,
+            medias[index].author.name +
+                " (" +
+                medias[index].getTypeString() +
+                ")",
           ),
           onTap: onTap != null ? () => onTap!(medias[index]) : null,
 

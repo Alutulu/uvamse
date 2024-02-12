@@ -25,9 +25,10 @@ class MediastoreScaffold extends StatelessWidget {
         selectedIndex: selectedIndex,
         body: child,
         onDestinationSelected: (idx) {
-          if (idx == 0) goRouter.go('/home/all');
-          if (idx == 1) goRouter.go('/authors');
-          if (idx == 2) goRouter.go('/settings');
+          if (idx == 0) goRouter.go('/home');
+          if (idx == 1) goRouter.go('/media/all');
+          if (idx == 2) goRouter.go('/authors');
+          if (idx == 3) goRouter.go('/about');
         },
         destinations: const [
           AdaptiveScaffoldDestination(
@@ -35,12 +36,16 @@ class MediastoreScaffold extends StatelessWidget {
             icon: Icons.home,
           ),
           AdaptiveScaffoldDestination(
+            title: 'Media',
+            icon: Icons.play_arrow,
+          ),
+          AdaptiveScaffoldDestination(
             title: 'Authors',
             icon: Icons.person,
           ),
           AdaptiveScaffoldDestination(
-            title: 'Settings',
-            icon: Icons.settings,
+            title: 'About',
+            icon: Icons.info,
           ),
         ],
       ),

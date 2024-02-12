@@ -41,6 +41,10 @@ class MediaDetailsScreen extends StatelessWidget {
               media!.author.name,
               style: Theme.of(context).textTheme.titleMedium,
             ),
+            Text(
+              "(" + media!.getTypeString() + ")",
+              style: Theme.of(context).textTheme.titleSmall,
+            ),
             TextButton(
               child: const Text('View author (Push)'),
               onPressed: () {
@@ -48,8 +52,8 @@ class MediaDetailsScreen extends StatelessWidget {
                   MaterialPageRoute<void>(
                     builder: (context) => AuthorDetailsScreen(
                       author: media!.author,
-                      onBookTapped: (media) {
-                        GoRouter.of(context).go('/home/all/media/${media.id}');
+                      onMediaTapped: (media) {
+                        GoRouter.of(context).go('/media/all/media/${media.id}');
                       },
                     ),
                   ),

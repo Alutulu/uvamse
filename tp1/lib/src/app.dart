@@ -2,18 +2,18 @@
 // for details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
+import 'package:bookstore/src/screens/home.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import 'auth.dart';
+// import 'auth.dart';
 import 'data.dart';
 import 'screens/author_details.dart';
 import 'screens/authors.dart';
 import 'screens/media_details.dart';
 import 'screens/medias.dart';
 import 'screens/scaffold.dart';
-import 'screens/settings.dart';
-import 'screens/sign_in.dart';
+import 'screens/about.dart';
 import 'widgets/media_list.dart';
 import 'widgets/fade_transition_page.dart';
 
@@ -29,31 +29,14 @@ class Mediastore extends StatefulWidget {
 }
 
 class _MediastoreState extends State<Mediastore> {
-  final MediastoreAuth auth = MediastoreAuth();
+  // final MediastoreAuth auth = MediastoreAuth();
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      builder: (context, child) {
-        if (child == null) {
-          throw ('No child in .router constructor builder');
-        }
-        return MediastoreAuthScope(
-          notifier: auth,
-          child: child,
-        );
-      },
       routerConfig: GoRouter(
-        refreshListenable: auth,
         debugLogDiagnostics: true,
-        initialLocation: '/home/all',
-        redirect: (context, state) {
-          final signedIn = MediastoreAuth.of(context).signedIn;
-          if (state.uri.toString() != '/sign-in' && !signedIn) {
-            return '/sign-in';
-          }
-          return null;
-        },
+        initialLocation: '/home',
         routes: [
           ShellRoute(
             navigatorKey: appShellNavigatorKey,
@@ -61,14 +44,21 @@ class _MediastoreState extends State<Mediastore> {
               return MediastoreScaffold(
                 selectedIndex: switch (state.uri.path) {
                   var p when p.startsWith('/home') => 0,
-                  var p when p.startsWith('/authors') => 1,
-                  var p when p.startsWith('/settings') => 2,
+                  var p when p.startsWith('/media') => 1,
+                  var p when p.startsWith('/authors') => 2,
+                  var p when p.startsWith('/about') => 3,
                   _ => 0,
                 },
                 child: child,
               );
             },
             routes: [
+              GoRoute(
+                  path: '/home',
+                  pageBuilder: (context, state) {
+                    return FadeTransitionPage<dynamic>(
+                        key: state.pageKey, child: const HomeScreen());
+                  }),
               ShellRoute(
                 pageBuilder: (context, state, child) {
                   return FadeTransitionPage<dynamic>(
@@ -78,16 +68,14 @@ class _MediastoreState extends State<Mediastore> {
                       return MediasScreen(
                         onTap: (idx) {
                           GoRouter.of(context).go(switch (idx) {
-                            0 => '/home/all',
-                            1 => '/home/favoris',
-                            // 2 => '/home/all',
-                            _ => '/home/all',
+                            0 => '/media/all',
+                            1 => '/media/favoris',
+                            _ => '/media/all',
                           });
                         },
                         selectedIndex: switch (state.uri.path) {
-                          var p when p.startsWith('/home/all') => 0,
-                          var p when p.startsWith('/home/favoris') => 1,
-                          // var p when p.startsWith('/home/all') => 2,
+                          var p when p.startsWith('/media/all') => 0,
+                          var p when p.startsWith('/media/favoris') => 1,
                           _ => 0,
                         },
                         child: child,
@@ -97,7 +85,7 @@ class _MediastoreState extends State<Mediastore> {
                 },
                 routes: [
                   GoRoute(
-                    path: '/home/all',
+                    path: '/media/all',
                     pageBuilder: (context, state) {
                       return FadeTransitionPage<dynamic>(
                         key: state.pageKey,
@@ -108,7 +96,7 @@ class _MediastoreState extends State<Mediastore> {
                               medias: libraryInstance.allMedias,
                               onTap: (media) {
                                 GoRouter.of(context)
-                                    .go('/home/all/media/${media.id}');
+                                    .go('/media/all/media/${media.id}');
                               },
                             );
                           },
@@ -129,7 +117,7 @@ class _MediastoreState extends State<Mediastore> {
                     ],
                   ),
                   GoRoute(
-                    path: '/home/favoris',
+                    path: '/media/favoris',
                     pageBuilder: (context, state) {
                       return FadeTransitionPage<dynamic>(
                         // Use a builder to get the correct BuildContext
@@ -140,7 +128,7 @@ class _MediastoreState extends State<Mediastore> {
                               medias: libraryInstance.favoriteMedias,
                               onTap: (media) {
                                 GoRouter.of(context)
-                                    .go('/home/favoris/media/${media.id}');
+                                    .go('/media/favoris/media/${media.id}');
                               },
                             );
                           },
@@ -189,9 +177,9 @@ class _MediastoreState extends State<Mediastore> {
                       return Builder(builder: (context) {
                         return AuthorDetailsScreen(
                           author: author,
-                          onBookTapped: (media) {
+                          onMediaTapped: (media) {
                             GoRouter.of(context)
-                                .go('/home/all/media/${media.id}');
+                                .go('/media/all/media/${media.id}');
                           },
                         );
                       });
@@ -200,33 +188,15 @@ class _MediastoreState extends State<Mediastore> {
                 ],
               ),
               GoRoute(
-                path: '/settings',
+                path: '/about',
                 pageBuilder: (context, state) {
                   return FadeTransitionPage<dynamic>(
                     key: state.pageKey,
-                    child: const SettingsScreen(),
+                    child: const AboutScreen(),
                   );
                 },
               ),
             ],
-          ),
-          GoRoute(
-            path: '/sign-in',
-            builder: (context, state) {
-              // Use a builder to get the correct BuildContext
-              return Builder(
-                builder: (context) {
-                  return SignInScreen(
-                    onSignIn: (value) async {
-                      final router = GoRouter.of(context);
-                      await MediastoreAuth.of(context)
-                          .signIn(value.username, value.password);
-                      router.go('/home/all');
-                    },
-                  );
-                },
-              );
-            },
           ),
         ],
       ),
