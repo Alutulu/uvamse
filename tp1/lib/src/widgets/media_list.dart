@@ -3,17 +3,34 @@
 // BSD-style license that can be found in the LICENSE file.
 
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../data.dart';
-
-class MediaList extends StatelessWidget {
-  final List<Media> medias;
+class MediaList extends StatefulWidget{
+    final List<Media> medias;
   final ValueChanged<Media>? onTap;
+
 
   const MediaList({
     required this.medias,
     this.onTap,
+
     super.key,
+  });
+
+  @override
+  State<MediaList> createState() => _medialist(medias:this.medias);
+}
+
+
+
+class _medialist extends State<MediaList> {
+  final List<Media> medias;
+  final ValueChanged<Media>? onTap;
+
+  _medialist({
+    required this.medias,
+    this.onTap,
   });
 
   @override
@@ -30,6 +47,19 @@ class MediaList extends StatelessWidget {
                 ")",
           ),
           onTap: onTap != null ? () => onTap!(medias[index]) : null,
+
+          trailing: IconButton(
+            key: Key(medias[index].title),
+            icon: medias[index].isFavoris == true
+                ? const Icon(Icons.favorite)
+                : const Icon(Icons.favorite_border),
+            onPressed: () {
+              setState(() {
+                // Inverser l'état de isFavoris pour l'élément en cours
+                medias[index].isFavoris = !medias[index].isFavoris;
+              });
+            },
+          ),
         ),
       );
 }

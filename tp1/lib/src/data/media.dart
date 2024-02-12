@@ -10,9 +10,7 @@ class Media {
   final String title;
   final Author author;
   final MediaType type;
-  final bool isFavoris;
-  // final bool isPopular;
-  // final bool isNew;
+  bool isFavoris;
 
   Media(this.id, this.title, this.author, this.type, this.isFavoris);
 
