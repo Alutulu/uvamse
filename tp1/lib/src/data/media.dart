@@ -4,12 +4,12 @@
 
 import 'author.dart';
 
-class Book {
+class Media {
   final int id;
   final String title;
   final Author author;
-  final bool isPopular;
-  final bool isNew;
+  // final bool isPopular;
+  // final bool isNew;
 
-  Book(this.id, this.title, this.isPopular, this.isNew, this.author);
+  Media(this.id, this.title, this.author);
 }
