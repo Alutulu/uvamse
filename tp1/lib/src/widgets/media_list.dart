@@ -6,32 +6,27 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../data.dart';
-class MediaList extends StatefulWidget{
-    final List<Media> medias;
-  final ValueChanged<Media>? onTap;
 
+class MediaList extends StatefulWidget {
+  final List<Media> medias;
+  final ValueChanged<Media>? onTap;
 
   const MediaList({
     required this.medias,
     this.onTap,
-
     super.key,
   });
 
   @override
-  State<MediaList> createState() => _medialist(medias:this.medias);
+  State<MediaList> createState() =>
+      _medialist(medias: this.medias, onTap: this.onTap);
 }
-
-
 
 class _medialist extends State<MediaList> {
   final List<Media> medias;
   final ValueChanged<Media>? onTap;
 
-  _medialist({
-    required this.medias,
-    this.onTap,
-  });
+  _medialist({required this.medias, this.onTap});
 
   @override
   Widget build(BuildContext context) => ListView.builder(
@@ -47,7 +42,6 @@ class _medialist extends State<MediaList> {
                 ")",
           ),
           onTap: onTap != null ? () => onTap!(medias[index]) : null,
-
           trailing: IconButton(
             key: Key(medias[index].title),
             icon: medias[index].isFavoris == true
