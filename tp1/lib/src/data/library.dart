@@ -18,7 +18,7 @@ final libraryInstance = Library()
     title: 'Too Like the Lightning',
     authorName: 'Ada Palmer',
     type: MediaType.manga,
-    isFavoris: true,
+    isFavoris: false,
   )
   ..addMedia(
     title: 'Kindred',
@@ -30,18 +30,18 @@ final libraryInstance = Library()
       title: 'The Lathe of Heaven',
       authorName: 'Ursula K. Le Guin',
       type: MediaType.BD,
-      isFavoris: true)
+      isFavoris: false)
   ..addMedia(
     title: 'Hand of Darkness Left',
     authorName: 'Guin Lightning Le K.',
     type: MediaType.serie,
-    isFavoris: true,
+    isFavoris: false,
   )
   ..addMedia(
     title: 'Too Bad things',
     authorName: 'Ada Palmer',
     type: MediaType.film,
-    isFavoris: true,
+    isFavoris: false,
   )
   ..addMedia(
     title: 'Children',
@@ -53,7 +53,42 @@ final libraryInstance = Library()
       title: 'The Heaven of Lathe',
       authorName: 'Octavia Lightning',
       type: MediaType.livre,
-      isFavoris: true);
+      isFavoris: false)
+  ..addMedia(
+    title: 'Le Seigneur des anneaux',
+    authorName: 'Arthur Mata',
+    type: MediaType.film,
+    isFavoris: false,
+  )
+  ..addMedia(
+    title: 'Harry Potter',
+    authorName: 'Thibault Roux',
+    type: MediaType.livre,
+    isFavoris: false,
+  )
+  ..addMedia(
+    title: 'Gogo gadgeto',
+    authorName: 'Inspecteur gadget',
+    type: MediaType.BD,
+    isFavoris: false,
+  )
+  ..addMedia(
+      title: 'The Platinium',
+      authorName: 'Mr. Ourson',
+      type: MediaType.manga,
+      isFavoris: false)
+  ..addMedia(
+    title: 'The goldness',
+    authorName: 'Mme. Luxueuse',
+    type: MediaType.serie,
+    isFavoris: false,
+  )
+  ..addMedia(
+    title: 'Are you mad ?',
+    authorName: 'Momo Raoul',
+    type: MediaType.film,
+    isFavoris: false,
+  );
 
 class Library {
   final List<Media> allMedias = [];

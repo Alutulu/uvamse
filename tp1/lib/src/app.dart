@@ -5,14 +5,14 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import 'auth.dart';
+// import 'auth.dart';
 import 'data.dart';
 import 'screens/author_details.dart';
 import 'screens/authors.dart';
 import 'screens/media_details.dart';
 import 'screens/medias.dart';
 import 'screens/scaffold.dart';
-import 'screens/settings.dart';
+import 'screens/about.dart';
 import 'screens/sign_in.dart';
 import 'widgets/media_list.dart';
 import 'widgets/fade_transition_page.dart';
@@ -29,31 +29,14 @@ class Mediastore extends StatefulWidget {
 }
 
 class _MediastoreState extends State<Mediastore> {
-  final MediastoreAuth auth = MediastoreAuth();
+  // final MediastoreAuth auth = MediastoreAuth();
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      builder: (context, child) {
-        if (child == null) {
-          throw ('No child in .router constructor builder');
-        }
-        return MediastoreAuthScope(
-          notifier: auth,
-          child: child,
-        );
-      },
       routerConfig: GoRouter(
-        refreshListenable: auth,
         debugLogDiagnostics: true,
         initialLocation: '/home/all',
-        redirect: (context, state) {
-          final signedIn = MediastoreAuth.of(context).signedIn;
-          if (state.uri.toString() != '/sign-in' && !signedIn) {
-            return '/sign-in';
-          }
-          return null;
-        },
         routes: [
           ShellRoute(
             navigatorKey: appShellNavigatorKey,
@@ -200,33 +183,15 @@ class _MediastoreState extends State<Mediastore> {
                 ],
               ),
               GoRoute(
-                path: '/settings',
+                path: '/about',
                 pageBuilder: (context, state) {
                   return FadeTransitionPage<dynamic>(
                     key: state.pageKey,
-                    child: const SettingsScreen(),
+                    child: const AboutScreen(),
                   );
                 },
               ),
             ],
-          ),
-          GoRoute(
-            path: '/sign-in',
-            builder: (context, state) {
-              // Use a builder to get the correct BuildContext
-              return Builder(
-                builder: (context) {
-                  return SignInScreen(
-                    onSignIn: (value) async {
-                      final router = GoRouter.of(context);
-                      await MediastoreAuth.of(context)
-                          .signIn(value.username, value.password);
-                      router.go('/home/all');
-                    },
-                  );
-                },
-              );
-            },
           ),
         ],
       ),
