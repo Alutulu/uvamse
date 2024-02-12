@@ -8,7 +8,7 @@ class Media {
   final int id;
   final String title;
   final Author author;
-  final bool isFavoris;
+  bool isFavoris;
   // final bool isPopular;
   // final bool isNew;
 

@@ -6,9 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../data.dart';
-
-class MediaList extends StatelessWidget {
-  final List<Media> medias;
+class MediaList extends StatefulWidget{
+    final List<Media> medias;
   final ValueChanged<Media>? onTap;
 
 
@@ -19,7 +18,20 @@ class MediaList extends StatelessWidget {
     super.key,
   });
 
+  @override
+  State<MediaList> createState() => _medialist(medias:this.medias);
+}
 
+
+
+class _medialist extends State<MediaList> {
+  final List<Media> medias;
+  final ValueChanged<Media>? onTap;
+
+  _medialist({
+    required this.medias,
+    this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) => ListView.builder(
@@ -35,15 +47,16 @@ class MediaList extends StatelessWidget {
 
           trailing: IconButton(
             key: Key(medias[index].title),
-            icon: medias[index].isFavoris==true 
-              ? const Icon(Icons.favorite)
-              : const Icon(Icons.favorite_border),
-            onPressed :(){
-             medias[index].isFavoris==true
-            ? medias[index].isFavoris==false
-            : medias[index].isFavoris==true; 
-            }),
-
+            icon: medias[index].isFavoris == true
+                ? const Icon(Icons.favorite)
+                : const Icon(Icons.favorite_border),
+            onPressed: () {
+              setState(() {
+                // Inverser l'état de isFavoris pour l'élément en cours
+                medias[index].isFavoris = !medias[index].isFavoris;
+              });
+            },
+          ),
         ),
       );
 }
