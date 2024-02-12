@@ -24,9 +24,6 @@ class Media {
     if (this.type == MediaType.livre) {
       return "Livre";
     }
-    if (this.type == MediaType.manga) {
-      return "Manga";
-    }
     if (this.type == MediaType.serie) {
       return "Série";
     }

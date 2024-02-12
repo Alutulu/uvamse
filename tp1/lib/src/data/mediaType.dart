@@ -1,1 +1,1 @@
-enum MediaType { BD, film, livre, serie, manga }
+enum MediaType { BD, film, livre, serie }

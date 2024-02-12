@@ -27,7 +27,7 @@ class _MediasScreenState extends State<MediasScreen>
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 3, vsync: this)
+    _tabController = TabController(length: 6, vsync: this)
       ..addListener(_handleTabIndexChanged);
   }
 
@@ -48,6 +48,22 @@ class _MediasScreenState extends State<MediasScreen>
           tabs: const [
             Tab(
               text: 'All',
+              icon: Icon(Icons.list),
+            ),
+            Tab(
+              text: 'Films',
+              icon: Icon(Icons.list),
+            ),
+            Tab(
+              text: 'BDs',
+              icon: Icon(Icons.list),
+            ),
+            Tab(
+              text: 'Séries',
+              icon: Icon(Icons.list),
+            ),
+            Tab(
+              text: 'Livres',
               icon: Icon(Icons.list),
             ),
             Tab(

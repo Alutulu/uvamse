@@ -69,13 +69,21 @@ class _MediastoreState extends State<Mediastore> {
                         onTap: (idx) {
                           GoRouter.of(context).go(switch (idx) {
                             0 => '/media/all',
-                            1 => '/media/favoris',
+                            1 => '/media/film',
+                            2 => '/media/bd',
+                            3 => '/media/serie',
+                            4 => '/media/livre',
+                            5 => '/media/favoris',
                             _ => '/media/all',
                           });
                         },
                         selectedIndex: switch (state.uri.path) {
                           var p when p.startsWith('/media/all') => 0,
-                          var p when p.startsWith('/media/favoris') => 1,
+                          var p when p.startsWith('/media/film') => 1,
+                          var p when p.startsWith('/media/bd') => 2,
+                          var p when p.startsWith('/media/serie') => 3,
+                          var p when p.startsWith('/media/livre') => 4,
+                          var p when p.startsWith('/media/favoris') => 5,
                           _ => 0,
                         },
                         child: child,
@@ -126,6 +134,134 @@ class _MediastoreState extends State<Mediastore> {
                           builder: (context) {
                             return MediaList(
                               medias: libraryInstance.favoriteMedias,
+                              onTap: (media) {
+                                GoRouter.of(context)
+                                    .go('/media/favoris/media/${media.id}');
+                              },
+                            );
+                          },
+                        ),
+                      );
+                    },
+                    routes: [
+                      GoRoute(
+                        path: 'media/:mediaId',
+                        parentNavigatorKey: appShellNavigatorKey,
+                        builder: (context, state) {
+                          return MediaDetailsScreen(
+                            media: libraryInstance.getMedia(
+                                state.pathParameters['mediaId'] ?? ''),
+                          );
+                        },
+                      ),
+                    ],
+                  ),
+                  GoRoute(
+                    path: '/media/film',
+                    pageBuilder: (context, state) {
+                      return FadeTransitionPage<dynamic>(
+                        // Use a builder to get the correct BuildContext
+                        key: state.pageKey,
+                        child: Builder(
+                          builder: (context) {
+                            return MediaList(
+                              medias: libraryInstance.filmMedias,
+                              onTap: (media) {
+                                GoRouter.of(context)
+                                    .go('/media/favoris/media/${media.id}');
+                              },
+                            );
+                          },
+                        ),
+                      );
+                    },
+                    routes: [
+                      GoRoute(
+                        path: 'media/:mediaId',
+                        parentNavigatorKey: appShellNavigatorKey,
+                        builder: (context, state) {
+                          return MediaDetailsScreen(
+                            media: libraryInstance.getMedia(
+                                state.pathParameters['mediaId'] ?? ''),
+                          );
+                        },
+                      ),
+                    ],
+                  ),
+                  GoRoute(
+                    path: '/media/bd',
+                    pageBuilder: (context, state) {
+                      return FadeTransitionPage<dynamic>(
+                        // Use a builder to get the correct BuildContext
+                        key: state.pageKey,
+                        child: Builder(
+                          builder: (context) {
+                            return MediaList(
+                              medias: libraryInstance.BDMedias,
+                              onTap: (media) {
+                                GoRouter.of(context)
+                                    .go('/media/favoris/media/${media.id}');
+                              },
+                            );
+                          },
+                        ),
+                      );
+                    },
+                    routes: [
+                      GoRoute(
+                        path: 'media/:mediaId',
+                        parentNavigatorKey: appShellNavigatorKey,
+                        builder: (context, state) {
+                          return MediaDetailsScreen(
+                            media: libraryInstance.getMedia(
+                                state.pathParameters['mediaId'] ?? ''),
+                          );
+                        },
+                      ),
+                    ],
+                  ),
+                  GoRoute(
+                    path: '/media/serie',
+                    pageBuilder: (context, state) {
+                      return FadeTransitionPage<dynamic>(
+                        // Use a builder to get the correct BuildContext
+                        key: state.pageKey,
+                        child: Builder(
+                          builder: (context) {
+                            return MediaList(
+                              medias: libraryInstance.serieMedias,
+                              onTap: (media) {
+                                GoRouter.of(context)
+                                    .go('/media/favoris/media/${media.id}');
+                              },
+                            );
+                          },
+                        ),
+                      );
+                    },
+                    routes: [
+                      GoRoute(
+                        path: 'media/:mediaId',
+                        parentNavigatorKey: appShellNavigatorKey,
+                        builder: (context, state) {
+                          return MediaDetailsScreen(
+                            media: libraryInstance.getMedia(
+                                state.pathParameters['mediaId'] ?? ''),
+                          );
+                        },
+                      ),
+                    ],
+                  ),
+                  GoRoute(
+                    path: '/media/livre',
+                    pageBuilder: (context, state) {
+                      return FadeTransitionPage<dynamic>(
+                        // Use a builder to get the correct BuildContext
+                        key: state.pageKey,
+                        child: Builder(
+                          builder: (context) {
+                            return MediaList(
+                              medias: libraryInstance.livreMedias,
                               onTap: (media) {
                                 GoRouter.of(context)
                                     .go('/media/favoris/media/${media.id}');

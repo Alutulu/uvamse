@@ -17,13 +17,13 @@ final libraryInstance = Library()
   ..addMedia(
     title: 'Too Like the Lightning',
     authorName: 'Ada Palmer',
-    type: MediaType.manga,
+    type: MediaType.serie,
     isFavoris: false,
   )
   ..addMedia(
     title: 'Kindred',
     authorName: 'Octavia E. Butler',
-    type: MediaType.manga,
+    type: MediaType.serie,
     isFavoris: false,
   )
   ..addMedia(
@@ -68,18 +68,18 @@ final libraryInstance = Library()
   )
   ..addMedia(
     title: 'Gogo gadgeto',
-    authorName: 'Inspecteur gadget',
+    authorName: 'Arthur Mata',
     type: MediaType.BD,
     isFavoris: false,
   )
   ..addMedia(
       title: 'The Platinium',
       authorName: 'Mr. Ourson',
-      type: MediaType.manga,
+      type: MediaType.serie,
       isFavoris: false)
   ..addMedia(
     title: 'The goldness',
-    authorName: 'Mme. Luxueuse',
+    authorName: 'Thibault Roux',
     type: MediaType.serie,
     isFavoris: false,
   )
@@ -126,6 +126,22 @@ class Library {
 
   List<Media> get favoriteMedias => [
         ...allMedias.where((media) => media.isFavoris),
+      ];
+
+  List<Media> get filmMedias => [
+        ...allMedias.where((media) => media.type == MediaType.film),
+      ];
+
+  List<Media> get BDMedias => [
+        ...allMedias.where((media) => media.type == MediaType.BD),
+      ];
+
+  List<Media> get serieMedias => [
+        ...allMedias.where((media) => media.type == MediaType.serie),
+      ];
+
+  List<Media> get livreMedias => [
+        ...allMedias.where((media) => media.type == MediaType.livre),
       ];
 
   // List<Book> get newBooks => [
