@@ -41,6 +41,10 @@ class MediaDetailsScreen extends StatelessWidget {
               media!.author.name,
               style: Theme.of(context).textTheme.titleMedium,
             ),
+            Text(
+              "(" + media!.getTypeString() + ")",
+              style: Theme.of(context).textTheme.titleSmall,
+            ),
             TextButton(
               child: const Text('View author (Push)'),
               onPressed: () {
