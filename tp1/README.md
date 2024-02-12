@@ -1,16 +1,12 @@
-# tp1
+# Navigation and Routing
+A sample that shows how to use [go_router][https://pub.dev/packages/go_router]
+API to handle common navigation scenarios.
 
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Goals
+- Demonstrate common navigation scenarios:
+  - Parsing path parameters ('/user/:id')
+  - Sign in (redirection)
+  - Nested navigation using ShellRoute
+- Demonstrate how [deep linking][] is configured on iOS and Android
+- Demonstrate how to use the Link widget from `package:url_Launcher` with the
+  Router API.

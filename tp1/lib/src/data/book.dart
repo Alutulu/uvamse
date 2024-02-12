@@ -2,8 +2,14 @@
 // for details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
-import 'package:flutter_test/flutter_test.dart';
+import 'author.dart';
 
-void main() {
-  testWidgets('empty test', (tester) async {});
+class Book {
+  final int id;
+  final String title;
+  final Author author;
+  final bool isPopular;
+  final bool isNew;
+
+  Book(this.id, this.title, this.isPopular, this.isNew, this.author);
 }
