@@ -25,7 +25,7 @@ class MediastoreScaffold extends StatelessWidget {
         selectedIndex: selectedIndex,
         body: child,
         onDestinationSelected: (idx) {
-          if (idx == 0) goRouter.go('/medias/popular');
+          if (idx == 0) goRouter.go('/home/all');
           if (idx == 1) goRouter.go('/authors');
           if (idx == 2) goRouter.go('/settings');
         },

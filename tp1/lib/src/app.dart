@@ -46,7 +46,7 @@ class _MediastoreState extends State<Mediastore> {
       routerConfig: GoRouter(
         refreshListenable: auth,
         debugLogDiagnostics: true,
-        initialLocation: '/medias/popular',
+        initialLocation: '/home/all',
         redirect: (context, state) {
           final signedIn = MediastoreAuth.of(context).signedIn;
           if (state.uri.toString() != '/sign-in' && !signedIn) {
@@ -96,41 +96,8 @@ class _MediastoreState extends State<Mediastore> {
                   );
                 },
                 routes: [
-                  // GoRoute(
-                  //   path: '/books/new',
-                  //   pageBuilder: (context, state) {
-                  //     return FadeTransitionPage<dynamic>(
-                  //       key: state.pageKey,
-                  //       // Use a builder to get the correct BuildContext
-                  //       // TODO (johnpryan): remove when https://github.com/flutter/flutter/issues/108177 lands
-                  //       child: Builder(
-                  //         builder: (context) {
-                  //           return MediaList(
-                  //             medias: libraryInstance.newMedias,
-                  //             onTap: (book) {
-                  //               GoRouter.of(context)
-                  //                   .go('/books/new/book/${book.id}');
-                  //             },
-                  //           );
-                  //         },
-                  //       ),
-                  //     );
-                  //   },
-                  //   routes: [
-                  //     GoRoute(
-                  //       path: 'book/:bookId',
-                  //       parentNavigatorKey: appShellNavigatorKey,
-                  //       builder: (context, state) {
-                  //         return BookDetailsScreen(
-                  //           book: libraryInstance
-                  //               .getBook(state.pathParameters['bookId'] ?? ''),
-                  //         );
-                  //       },
-                  //     ),
-                  //   ],
-                  // ),
                   GoRoute(
-                    path: '/books/all',
+                    path: '/home/all',
                     pageBuilder: (context, state) {
                       return FadeTransitionPage<dynamic>(
                         key: state.pageKey,
@@ -150,12 +117,12 @@ class _MediastoreState extends State<Mediastore> {
                     },
                     routes: [
                       GoRoute(
-                        path: 'media/:bookId',
+                        path: 'media/:mediaId',
                         parentNavigatorKey: appShellNavigatorKey,
                         builder: (context, state) {
                           return MediaDetailsScreen(
-                            book: libraryInstance
-                                .getBook(state.pathParameters['bookId'] ?? ''),
+                            media: libraryInstance.getMedia(
+                                state.pathParameters['mediaId'] ?? ''),
                           );
                         },
                       ),
@@ -219,13 +186,12 @@ class _MediastoreState extends State<Mediastore> {
                               author.id ==
                               int.parse(state.pathParameters['authorId']!));
                       // Use a builder to get the correct BuildContext
-                      // TODO (johnpryan): remove when https://github.com/flutter/flutter/issues/108177 lands
                       return Builder(builder: (context) {
                         return AuthorDetailsScreen(
                           author: author,
-                          onBookTapped: (book) {
+                          onBookTapped: (media) {
                             GoRouter.of(context)
-                                .go('/books/all/book/${book.id}');
+                                .go('/home/all/media/${media.id}');
                           },
                         );
                       });
@@ -248,15 +214,14 @@ class _MediastoreState extends State<Mediastore> {
             path: '/sign-in',
             builder: (context, state) {
               // Use a builder to get the correct BuildContext
-              // TODO (johnpryan): remove when https://github.com/flutter/flutter/issues/108177 lands
               return Builder(
                 builder: (context) {
                   return SignInScreen(
                     onSignIn: (value) async {
                       final router = GoRouter.of(context);
-                      await BookstoreAuth.of(context)
+                      await MediastoreAuth.of(context)
                           .signIn(value.username, value.password);
-                      router.go('/books/popular');
+                      router.go('/home/all');
                     },
                   );
                 },

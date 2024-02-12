@@ -50,10 +50,6 @@ class _MediasScreenState extends State<MediasScreen>
               text: 'All',
               icon: Icon(Icons.list),
             ),
-            // Tab(
-            //   text: 'New',
-            //   icon: Icon(Icons.new_releases),
-            // ),
             Tab(
               text: 'Favoris',
               icon: Icon(Icons.favorite),

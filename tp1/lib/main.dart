@@ -24,7 +24,7 @@ void main() {
   // setPathUrlStrategy();
 
   setupWindow();
-  runApp(const Bookstore());
+  runApp(const Mediastore());
 }
 
 const double windowWidth = 480;
@@ -33,7 +33,7 @@ const double windowHeight = 854;
 void setupWindow() {
   if (!kIsWeb && (Platform.isWindows || Platform.isLinux || Platform.isMacOS)) {
     WidgetsFlutterBinding.ensureInitialized();
-    setWindowTitle('Navigation and routing');
+    setWindowTitle('Application Medias');
     setWindowMinSize(const Size(windowWidth, windowHeight));
     setWindowMaxSize(const Size(windowWidth, windowHeight));
     getCurrentScreen().then((screen) {
