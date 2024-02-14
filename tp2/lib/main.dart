@@ -55,7 +55,7 @@ class _MyHomePageState extends State<MyHomePage> {
               '$_counter',
               style: Theme.of(context).textTheme.headlineMedium,
             ),
-            const Image(image: AssetImage('assets/tree.jpg')),
+            const Image(image: AssetImage('assets/artwork_films_pokemon_4G_2022.jpg')),
           ],
         ),
       ),
