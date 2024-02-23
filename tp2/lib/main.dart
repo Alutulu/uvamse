@@ -58,6 +58,7 @@ class _MyHomePageState extends State<MyHomePage> {
               'Amusez-vous avec cette image !!',
             ),
             const Image(image: AssetImage('assets/artwork_films_pokemon_4G_2022.jpg')),
+            // Image(image: NetworkImage('https://picsum.photos/512/1024'))
           ],
         ),
       ),
