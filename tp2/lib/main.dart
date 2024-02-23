@@ -37,7 +37,6 @@ class _MyHomePageState extends State<MyHomePage> {
       _counter++;
     });
   }
-  
 
   @override
   Widget build(BuildContext context) {
@@ -50,14 +49,15 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const SliderExample(),
-            const Text(
+            SliderExample(),
+            Text(
               'You have pushed the button this many times:',
             ),
             Text(
               'Amusez-vous avec cette image !!',
             ),
-            const Image(image: AssetImage('assets/artwork_films_pokemon_4G_2022.jpg')),
+            Image(
+                image: AssetImage('assets/artwork_films_pokemon_4G_2022.jpg')),
             // Image(image: NetworkImage('https://picsum.photos/512/1024'))
           ],
         ),
