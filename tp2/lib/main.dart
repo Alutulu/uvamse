@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../class/slider.dart';
 
 void main() {
   runApp(const MyApp());
@@ -36,6 +37,7 @@ class _MyHomePageState extends State<MyHomePage> {
       _counter++;
     });
   }
+  
 
   @override
   Widget build(BuildContext context) {
@@ -48,6 +50,7 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            const SliderExample(),
             const Text(
               'You have pushed the button this many times:',
             ),
@@ -55,7 +58,7 @@ class _MyHomePageState extends State<MyHomePage> {
               '$_counter',
               style: Theme.of(context).textTheme.headlineMedium,
             ),
-            const Image(image: AssetImage('assets/artwork_films_pokemon_4G_2022.jpg')),
+            //const Image(image: AssetImage('assets/artwork_films_pokemon_4G_2022.jpg')),
           ],
         ),
       ),
