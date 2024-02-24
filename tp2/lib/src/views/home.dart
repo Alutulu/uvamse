@@ -13,39 +13,56 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  final List<String> entries = <String>['A', 'B', 'C'];
+  final List<int> colorCodes = <int>[600, 500, 100];
+
   @override
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(
           title: const Text('Home'),
         ),
         body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              ElevatedButton(
-                  onPressed: () {
-                    GoRouter.of(context).go('/media/all');
-                  },
-                  child: Text(
-                    "Tous les médias",
-                    style: Theme.of(context).textTheme.bodyLarge,
-                  )),
-              SizedBox(height: 30),
-              ElevatedButton(
-                  onPressed: () {
-                    GoRouter.of(context).go('/media/favoris');
-                  },
-                  child: Text("Mes favoris",
-                      style: Theme.of(context).textTheme.bodyLarge)),
-              SizedBox(height: 30),
-              ElevatedButton(
-                  onPressed: () {
-                    GoRouter.of(context).go('/authors');
-                  },
-                  child: Text("Tous les auteurs",
-                      style: Theme.of(context).textTheme.bodyLarge))
-            ],
+          child: ListView.builder(
+            padding: const EdgeInsets.all(8),
+            itemCount: entries.length,
+            itemBuilder: (BuildContext context, int index) {
+              return Card(
+                clipBehavior: Clip.hardEdge,
+                child: ListTile(
+                  title: Text('Entry ${entries[index]}'),
+                  tileColor: Colors.amber[colorCodes[index]],
+                ),
+              );
+            },
           ),
+
+          // child: Column(
+          //   mainAxisAlignment: MainAxisAlignment.center,
+          //   children: <Widget>[
+          //     ElevatedButton(
+          //         onPressed: () {
+          //           GoRouter.of(context).go('/2');
+          //         },
+          //         child: Text(
+          //           "Vers le slider",
+          //           style: Theme.of(context).textTheme.bodyLarge,
+          //         )),
+          //     const SizedBox(height: 30),
+          //     ElevatedButton(
+          //         onPressed: () {
+          //           GoRouter.of(context).go('/media/favoris');
+          //         },
+          //         child: Text("Mes favoris",
+          //             style: Theme.of(context).textTheme.bodyLarge)),
+          //     const SizedBox(height: 30),
+          //     ElevatedButton(
+          //         onPressed: () {
+          //           GoRouter.of(context).go('/authors');
+          //         },
+          //         child: Text("Tous les auteurs",
+          //             style: Theme.of(context).textTheme.bodyLarge))
+          //   ],
+          // ),
         ),
       );
 }

@@ -1,45 +1,20 @@
 import 'package:flutter/material.dart';
 import '../../../class/slider.dart';
 
-class Exo2Screen extends StatelessWidget {
+class Exo2Screen extends StatefulWidget {
   const Exo2Screen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Jeu du Taquin',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: const MyHomePage(title: 'Home'),
-    );
-  }
+  State<Exo2Screen> createState() => _Exo2Screen();
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
+class _Exo2Screen extends State<Exo2Screen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(widget.title),
+        title: const Text('Exercice 2 : Un slider'),
       ),
       body: const Center(
         child: Column(
