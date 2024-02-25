@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../../class/slider.dart';
+import '../class/slider.dart';
 
 class Exo2Screen extends StatefulWidget {
   const Exo2Screen({super.key});

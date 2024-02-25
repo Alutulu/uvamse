@@ -4,6 +4,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:tp2/src/class/exercice.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -24,15 +25,11 @@ class _HomeScreenState extends State<HomeScreen> {
         body: Center(
           child: ListView.builder(
             padding: const EdgeInsets.all(8),
-            itemCount: entries.length,
+            itemCount: listExercices.length,
             itemBuilder: (BuildContext context, int index) {
               return Card(
-                clipBehavior: Clip.hardEdge,
-                child: ListTile(
-                  title: Text('Entry ${entries[index]}'),
-                  tileColor: Colors.amber[colorCodes[index]],
-                ),
-              );
+                  clipBehavior: Clip.hardEdge,
+                  child: listExercices[index].toListTile());
             },
           ),
 
