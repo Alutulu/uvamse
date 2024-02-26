@@ -14,9 +14,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final List<String> entries = <String>['A', 'B', 'C'];
-  final List<int> colorCodes = <int>[600, 500, 100];
-
   @override
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(
