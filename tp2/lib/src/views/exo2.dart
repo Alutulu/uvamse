@@ -28,6 +28,8 @@ class _Exo2Screen extends State<Exo2Screen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Container(
+              width: 500.0,
+              height: 300.0,
               padding: const EdgeInsets.all(16),
               decoration: const BoxDecoration(color: Colors.white),
               clipBehavior: Clip.hardEdge,
