@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tp2/src/widgets/retourBtn.dart';
 import 'package:tp2/src/widgets/tile.dart';
 
 class Exo5bScreen extends StatefulWidget {
@@ -27,13 +28,25 @@ class _Exo5bScreen extends State<Exo5bScreen> {
       body: Center(
           child: Padding(
               padding: const EdgeInsets.all(8),
-              child: GridView.count(
-                primary: false,
-                padding: const EdgeInsets.all(20),
-                crossAxisSpacing: 10,
-                mainAxisSpacing: 10,
-                crossAxisCount: division,
-                children: listetile,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  BoutonRetour.widget(context),
+                  const SizedBox(
+                    height: 15,
+                  ),
+                  SizedBox(
+                      width: 500,
+                      height: 500,
+                      child: GridView.count(
+                        primary: false,
+                        padding: const EdgeInsets.all(20),
+                        crossAxisSpacing: 10,
+                        mainAxisSpacing: 10,
+                        crossAxisCount: division,
+                        children: listetile,
+                      ))
+                ],
               ))),
     );
   }

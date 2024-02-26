@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:tp2/src/widgets/retourBtn.dart';
 import 'package:tp2/src/widgets/tile.dart';
 import 'dart:math' as math;
 
@@ -49,7 +51,9 @@ class _Exo6Screen extends State<Exo6Screen> {
             child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Container(
+                  BoutonRetour.widget(context),
+                  const SizedBox(height: 15),
+                  SizedBox(
                       width: 500,
                       height: 500,
                       child: GridView.count(

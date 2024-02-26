@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tp2/src/utils/math.dart';
+import 'package:tp2/src/widgets/retourBtn.dart';
 import 'package:tp2/src/widgets/tile.dart';
 
 class Exo4Screen extends StatefulWidget {
@@ -30,10 +31,12 @@ class _Exo4Screen extends State<Exo4Screen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            BoutonRetour.widget(context),
+            const SizedBox(height: 15),
             SizedBox(
-                // width: 150.0,
-                // height: 150.0,
+                width: 150.0,
                 child: Container(
+                    height: 50,
                     margin: const EdgeInsets.all(20.0),
                     child: createTileWidgetFrom(tile))),
             Container(

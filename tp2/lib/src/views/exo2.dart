@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:tp2/src/utils/math.dart';
+import 'package:tp2/src/widgets/retourBtn.dart';
 
 class Exo2Screen extends StatefulWidget {
   const Exo2Screen({super.key});
@@ -27,6 +29,8 @@ class _Exo2Screen extends State<Exo2Screen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            BoutonRetour.widget(context),
+            const SizedBox(height: 15),
             Container(
               width: 500.0,
               height: 300.0,
