@@ -15,9 +15,7 @@ class _Exo5aScreen extends State<Exo5aScreen> {
   double rotateZValue = 0;
   double scaleValue = 1;
 
-  Tile tile = Tile(
-      imageURL: 'assets/artwork_films_pokemon_4G_2022.jpg',
-      alignment: const Alignment(0, 0));
+  Tile tile = Tile(imageURL: 'assets/artwork_films_pokemon_4G_2022.jpg');
 
   @override
   Widget build(BuildContext context) {
@@ -28,40 +26,46 @@ class _Exo5aScreen extends State<Exo5aScreen> {
       ),
       body: Center(
           child: Padding(
-        padding: const EdgeInsets.all(8),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            SizedBox(
-                width: 150.0,
-                height: 150.0,
-                child: Container(
-                    margin: const EdgeInsets.all(20.0),
-                    child: createTileWidgetFrom(tile))),
-            Container(
-              padding: const EdgeInsets.all(16),
-              decoration: const BoxDecoration(color: Colors.white),
-              clipBehavior: Clip.hardEdge,
-              child: Transform(
-                  alignment: Alignment.center,
-                  transform: perspective.scaled(1, 1, 1)
-                    ..rotateX(deg2rad(rotateXValue)),
-                  child: Transform.rotate(
-                      angle: deg2rad(rotateZValue),
-                      child: Transform.flip(
-                        flipY: mirror,
-                        child: Transform.scale(
-                          alignment: Alignment.center,
-                          scale: scaleValue,
-                          child: const Image(
-                              image: AssetImage(
-                                  'assets/artwork_films_pokemon_4G_2022.jpg')),
-                        ),
-                      ))),
-            ),
-          ],
-        ),
-      )),
+              padding: const EdgeInsets.all(8),
+              child: GridView.count(
+                primary: false,
+                padding: const EdgeInsets.all(20),
+                crossAxisSpacing: 10,
+                mainAxisSpacing: 10,
+                crossAxisCount: 3,
+                children: <Widget>[
+                  Container(
+                    padding: const EdgeInsets.all(8),
+                    color: Colors.teal[100],
+                    child: const Text("He'd have you all unravel at the"),
+                  ),
+                  Container(
+                    padding: const EdgeInsets.all(8),
+                    color: Colors.teal[200],
+                    child: const Text('Heed not the rabble'),
+                  ),
+                  Container(
+                    padding: const EdgeInsets.all(8),
+                    color: Colors.teal[300],
+                    child: const Text('Sound of screams but the'),
+                  ),
+                  Container(
+                    padding: const EdgeInsets.all(8),
+                    color: Colors.teal[400],
+                    child: const Text('Who scream'),
+                  ),
+                  Container(
+                    padding: const EdgeInsets.all(8),
+                    color: Colors.teal[500],
+                    child: const Text('Revolution is coming...'),
+                  ),
+                  Container(
+                    padding: const EdgeInsets.all(8),
+                    color: Colors.teal[600],
+                    child: const Text('Revolution, they...'),
+                  ),
+                ],
+              ))),
     );
   }
 

@@ -61,6 +61,7 @@ flutter:
   assets:
     - assets/tree.jpg
     - assets/artwork_films_pokemon_4G_2022.jpg
+    - assets/bulbizarre.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

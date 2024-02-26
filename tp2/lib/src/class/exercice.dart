@@ -14,6 +14,10 @@ List<Exercice> listExercices = [
       description: "Page qui affiche des tuiles",
       title: "5A) Grille de tuiles",
       path: "/5a"),
+  Exercice(
+      description: "Grille 3x3",
+      title: "5B) Page qui affiche une grille 3x3",
+      path: "/5b"),
 ];
 
 class Exercice {

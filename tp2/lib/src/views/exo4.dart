@@ -15,9 +15,7 @@ class _Exo4Screen extends State<Exo4Screen> {
   double rotateZValue = 0;
   double scaleValue = 1;
 
-  Tile tile = Tile(
-      imageURL: 'assets/artwork_films_pokemon_4G_2022.jpg',
-      alignment: const Alignment(0, 0));
+  Tile tile = Tile(imageURL: 'assets/artwork_films_pokemon_4G_2022.jpg');
 
   @override
   Widget build(BuildContext context) {
@@ -33,8 +31,8 @@ class _Exo4Screen extends State<Exo4Screen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             SizedBox(
-                width: 150.0,
-                height: 150.0,
+                // width: 150.0,
+                // height: 150.0,
                 child: Container(
                     margin: const EdgeInsets.all(20.0),
                     child: createTileWidgetFrom(tile))),
