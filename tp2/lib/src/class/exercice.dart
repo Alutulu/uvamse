@@ -18,6 +18,10 @@ List<Exercice> listExercices = [
       description: "Grille 3x3",
       title: "5B) Page qui affiche une grille 3x3",
       path: "/5b"),
+  Exercice(
+      description: "Division d'image avec un slider",
+      title: "5C) Division d'image",
+      path: "/5c"),
 ];
 
 class Exercice {

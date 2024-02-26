@@ -3,11 +3,15 @@ import 'package:flutter/material.dart';
 List<Widget> getTilesFrom(String URLimage, int division) {
   List<Widget> listTiles = [];
   Tile tile = Tile(imageURL: URLimage);
-  double pas = 2.0 / (division - 1);
-  for (var i = 0; i < division; i++) {
-    for (var j = 0; j < division; j++) {
-      listTiles.add(tile.croppedImageTile(
-          nbTilesPerSide: division, x: -1 + j * pas, y: -1 + i * pas));
+  if (division == 1) {
+    listTiles.add(tile.croppedImageTile(nbTilesPerSide: 1, x: 0, y: 0));
+  } else {
+    double pas = 2.0 / (division - 1);
+    for (var i = 0; i < division; i++) {
+      for (var j = 0; j < division; j++) {
+        listTiles.add(tile.croppedImageTile(
+            nbTilesPerSide: division, x: -1 + j * pas, y: -1 + i * pas));
+      }
     }
   }
   return listTiles;
