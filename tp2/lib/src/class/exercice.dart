@@ -22,6 +22,10 @@ List<Exercice> listExercices = [
       description: "Division d'image avec un slider",
       title: "5C) Division d'image",
       path: "/5c"),
+  Exercice(
+      description: "Permutation de tuile",
+      title: "6A Permutation de tuile",
+      path: "/6"),
 ];
 
 class Exercice {
