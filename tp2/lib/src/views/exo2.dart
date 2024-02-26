@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tp2/src/utils/math.dart';
 
 class Exo2Screen extends StatefulWidget {
   const Exo2Screen({super.key});
@@ -8,7 +9,7 @@ class Exo2Screen extends StatefulWidget {
 }
 
 class _Exo2Screen extends State<Exo2Screen> {
-  bool? mirror = true;
+  bool mirror = false;
   double rotateXValue = 0;
   double rotateZValue = 0;
   double scaleValue = 1;
@@ -26,9 +27,29 @@ class _Exo2Screen extends State<Exo2Screen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Image(
-                image: AssetImage('assets/artwork_films_pokemon_4G_2022.jpg')),
-            // Image(image: NetworkImage('https://picsum.photos/512/1024'))
+            Container(
+              padding: const EdgeInsets.all(16),
+              decoration: const BoxDecoration(color: Colors.white),
+              clipBehavior: Clip.hardEdge,
+              child: Transform(
+                  alignment: Alignment.center,
+                  transform: perspective.scaled(1, 1, 1)
+                    ..rotateX(deg2rad(rotateXValue)),
+                  child: Transform.rotate(
+                      angle: deg2rad(rotateZValue),
+                      child: Transform.flip(
+                        flipY: mirror,
+                        child: Transform.scale(
+                          alignment: Alignment.center,
+                          scale: scaleValue,
+                          child: const Image(
+                              image: AssetImage(
+                                  'assets/artwork_films_pokemon_4G_2022.jpg')),
+                        ),
+                      ))),
+            ),
+
+            // Image(image: NetworkImage('https://picsum.photos/512/1024')),),),)
 
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
@@ -78,7 +99,7 @@ class _Exo2Screen extends State<Exo2Screen> {
                     value: mirror,
                     onChanged: (bool? value) {
                       setState(() {
-                        mirror = value;
+                        mirror = value!;
                       });
                     }),
               ],
