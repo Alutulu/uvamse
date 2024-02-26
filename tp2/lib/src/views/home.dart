@@ -29,37 +29,9 @@ class _HomeScreenState extends State<HomeScreen> {
             itemBuilder: (BuildContext context, int index) {
               return Card(
                   clipBehavior: Clip.hardEdge,
-                  child: listExercices[index].toListTile());
+                  child: listExercices[index].toListTile(context));
             },
           ),
-
-          // child: Column(
-          //   mainAxisAlignment: MainAxisAlignment.center,
-          //   children: <Widget>[
-          //     ElevatedButton(
-          //         onPressed: () {
-          //           GoRouter.of(context).go('/2');
-          //         },
-          //         child: Text(
-          //           "Vers le slider",
-          //           style: Theme.of(context).textTheme.bodyLarge,
-          //         )),
-          //     const SizedBox(height: 30),
-          //     ElevatedButton(
-          //         onPressed: () {
-          //           GoRouter.of(context).go('/media/favoris');
-          //         },
-          //         child: Text("Mes favoris",
-          //             style: Theme.of(context).textTheme.bodyLarge)),
-          //     const SizedBox(height: 30),
-          //     ElevatedButton(
-          //         onPressed: () {
-          //           GoRouter.of(context).go('/authors');
-          //         },
-          //         child: Text("Tous les auteurs",
-          //             style: Theme.of(context).textTheme.bodyLarge))
-          //   ],
-          // ),
         ),
       );
 }

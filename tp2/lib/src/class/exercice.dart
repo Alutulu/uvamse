@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 List<Exercice> listExercices = [
-  Exercice(description: "coucou c'est moi", title: "Moumou", path: "labas")
+  Exercice(
+      description: "Exercice avec un slider", title: "2) Slider", path: "/2"),
 ];
 
 class Exercice {
@@ -12,9 +14,12 @@ class Exercice {
   Exercice(
       {required this.title, required this.description, required this.path});
 
-  ListTile toListTile() => ListTile(
+  ListTile toListTile(BuildContext context) => ListTile(
         title: Text(title),
         tileColor: Colors.teal[100],
         subtitle: Text(description),
+        onTap: () {
+          GoRouter.of(context).go(path);
+        },
       );
 }
