@@ -16,8 +16,6 @@ class _Exo5aScreen extends State<Exo5aScreen> {
   double rotateZValue = 0;
   double scaleValue = 1;
 
-  Tile tile = Tile(imageURL: 'assets/artwork_films_pokemon_4G_2022.jpg');
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -86,15 +84,6 @@ class _Exo5aScreen extends State<Exo5aScreen> {
                   )
                 ],
               ))),
-    );
-  }
-
-  Widget createTileWidgetFrom(Tile tile) {
-    return InkWell(
-      child: tile.croppedImageTile(),
-      onTap: () {
-        print("tapped on tile");
-      },
     );
   }
 }

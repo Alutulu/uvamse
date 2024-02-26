@@ -16,7 +16,10 @@ class _Exo4Screen extends State<Exo4Screen> {
   double rotateZValue = 0;
   double scaleValue = 1;
 
-  Tile tile = Tile(imageURL: 'assets/artwork_films_pokemon_4G_2022.jpg');
+  Tile tile = Tile(
+      imageURL: 'assets/artwork_films_pokemon_4G_2022.jpg',
+      alignment: const Alignment(0, 0),
+      division: 3);
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +41,7 @@ class _Exo4Screen extends State<Exo4Screen> {
                 child: Container(
                     height: 50,
                     margin: const EdgeInsets.all(20.0),
-                    child: createTileWidgetFrom(tile))),
+                    child: tile.toWidget())),
             Container(
               padding: const EdgeInsets.all(16),
               decoration: const BoxDecoration(color: Colors.white),
@@ -63,15 +66,6 @@ class _Exo4Screen extends State<Exo4Screen> {
           ],
         ),
       )),
-    );
-  }
-
-  Widget createTileWidgetFrom(Tile tile) {
-    return InkWell(
-      child: tile.croppedImageTile(),
-      onTap: () {
-        print("tapped on tile");
-      },
     );
   }
 }

@@ -16,7 +16,7 @@ class _Exo5bScreen extends State<Exo5bScreen> {
   double scaleValue = 1;
   static int division = 3;
 
-  List<Widget> listetile = getTilesFrom('assets/bulbizarre.png', division);
+  var listetile = TileGrid(division, 'assets/bulbizarre.png');
 
   @override
   Widget build(BuildContext context) {
@@ -44,19 +44,10 @@ class _Exo5bScreen extends State<Exo5bScreen> {
                         crossAxisSpacing: 10,
                         mainAxisSpacing: 10,
                         crossAxisCount: division,
-                        children: listetile,
+                        children: listetile.toWidgetList(),
                       ))
                 ],
               ))),
-    );
-  }
-
-  Widget createTileWidgetFrom(Tile tile) {
-    return InkWell(
-      child: tile.croppedImageTile(),
-      onTap: () {
-        print("tapped on tile");
-      },
     );
   }
 }

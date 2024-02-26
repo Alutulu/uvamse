@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:tp2/src/widgets/retourBtn.dart';
 import 'package:tp2/src/widgets/tile.dart';
 
@@ -17,7 +16,7 @@ class _Exo5cScreen extends State<Exo5cScreen> {
   double scaleValue = 1;
   static int division = 3;
 
-  List<Widget> listetile = getTilesFrom('assets/bulbizarre.png', division);
+  var listetile = TileGrid(division, 'assets/bulbizarre.png');
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +44,7 @@ class _Exo5cScreen extends State<Exo5cScreen> {
                         crossAxisSpacing: 10,
                         mainAxisSpacing: 10,
                         crossAxisCount: division,
-                        children: listetile,
+                        children: listetile.toWidgetList(),
                       )),
                   Slider(
                     value: division.toDouble(),
@@ -56,22 +55,12 @@ class _Exo5cScreen extends State<Exo5cScreen> {
                     onChanged: (double value) {
                       setState(() {
                         division = value.toInt();
-                        listetile =
-                            getTilesFrom('assets/bulbizarre.png', division);
+                        listetile = TileGrid(division, 'assets/bulbizarre.png');
                       });
                     },
                   )
                 ])),
       ),
-    );
-  }
-
-  Widget createTileWidgetFrom(Tile tile) {
-    return InkWell(
-      child: tile.croppedImageTile(),
-      onTap: () {
-        print("tapped on tile");
-      },
     );
   }
 }
