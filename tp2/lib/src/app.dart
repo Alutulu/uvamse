@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tp2/src/views/exo2.dart';
+import 'package:tp2/src/views/exo4.dart';
 import 'package:tp2/src/views/home.dart';
 
 final appShellNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'app shell');
@@ -19,7 +20,8 @@ class _App extends State<App> {
       title: 'Jeu du Taquin',
       routerConfig: GoRouter(routes: [
         GoRoute(path: '/', builder: (context, state) => const HomeScreen()),
-        GoRoute(path: '/2', builder: (context, state) => const Exo2Screen())
+        GoRoute(path: '/2', builder: (context, state) => const Exo2Screen()),
+        GoRoute(path: '/4', builder: (context, state) => const Exo4Screen()),
       ]),
     );
   }

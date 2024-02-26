@@ -3,7 +3,13 @@ import 'package:go_router/go_router.dart';
 
 List<Exercice> listExercices = [
   Exercice(
-      description: "Exercice avec un slider", title: "2) Slider", path: "/2"),
+      description: "Exercice avec un slider pour transformer une image",
+      title: "2) Slider",
+      path: "/2"),
+  Exercice(
+      description: "Page qui affiche une tuile de Taquin",
+      title: "4) Affichage d'une tuile",
+      path: "/4"),
 ];
 
 class Exercice {
