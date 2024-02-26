@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:tp2/src/utils/math.dart';
 import 'package:tp2/src/widgets/tile.dart';
 
-class Exo4Screen extends StatefulWidget {
-  const Exo4Screen({super.key});
+class Exo5aScreen extends StatefulWidget {
+  const Exo5aScreen({super.key});
 
   @override
-  State<Exo4Screen> createState() => _Exo4Screen();
+  State<Exo5aScreen> createState() => _Exo5aScreen();
 }
 
-class _Exo4Screen extends State<Exo4Screen> {
+class _Exo5aScreen extends State<Exo5aScreen> {
   bool mirror = false;
   double rotateXValue = 0;
   double rotateZValue = 0;
@@ -24,7 +24,7 @@ class _Exo4Screen extends State<Exo4Screen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: const Text("4) Affichage d'une tuile"),
+        title: const Text("5A) Page qui affiche des tuiles"),
       ),
       body: Center(
           child: Padding(

@@ -10,6 +10,10 @@ List<Exercice> listExercices = [
       description: "Page qui affiche une tuile de Taquin",
       title: "4) Affichage d'une tuile",
       path: "/4"),
+  Exercice(
+      description: "Page qui affiche des tuiles",
+      title: "5A) Grille de tuiles",
+      path: "/5a"),
 ];
 
 class Exercice {
