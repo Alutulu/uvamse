@@ -8,8 +8,8 @@ class TileGrid {
   int size;
   List<List<Tile>> tileGrid = [];
   String imageURL;
-  int? xBlankTile;
-  int? yBlankTile;
+  int? ligBlankTile;
+  int? colBlankTile;
 
   TileGrid(this.size, this.imageURL, {bool withBlankTile = false}) {
     List<Tile> tileList = _getTiles();
@@ -21,6 +21,8 @@ class TileGrid {
       tileGrid.add(row);
     }
     if (withBlankTile) addRandomBlankTile();
+    updateTilesCoord();
+    updateTilesTapAction();
   }
 
   List<Widget> toWidgetList() {
@@ -39,8 +41,7 @@ class TileGrid {
         List.generate(size, (index) => -1 + (2.0 / (size - 1)) * index);
     for (var x in aligns) {
       for (var y in aligns) {
-        var tile = Tile(
-            imageURL: imageURL, alignment: Alignment(x, y), division: size);
+        var tile = Tile(imageURL: imageURL, x: x, y: y, division: size);
         listTiles.add(tile);
       }
     }
@@ -61,15 +62,42 @@ class TileGrid {
   }
 
   void makeTileBlank(int x, int y) {
-    tileGrid[x][y].isEmpty = false;
-    xBlankTile = x;
-    yBlankTile = y;
+    tileGrid[x][y].isEmpty = true;
+    ligBlankTile = y;
+    colBlankTile = x;
   }
 
-  void swapTile(int x, int y) {}
+  void swapTile(int x, int y) {
+    copyTile(x, y, ligBlankTile!, colBlankTile!);
+    makeTileBlank(x, y);
+  }
 
   void copyTile(int x1, int y1, int x2, int y2) {
-    tileGrid[x2][y2].isEmpty = true;
-    tileGrid[x2][y2].alignment.x = tileGrid[x1][y1].alignment.x;
+    tileGrid[x2][y2].isEmpty = false;
+    tileGrid[x2][y2].alignment =
+        Alignment(tileGrid[x1][y1].alignment.x, tileGrid[x1][y1].alignment.y);
+  }
+
+  bool canSwap(int x, int y) =>
+      ((x - ligBlankTile!).abs() == 1 && y == colBlankTile!) ||
+      (x == ligBlankTile! && (y - colBlankTile!).abs() == 1);
+
+  void updateTilesCoord() {
+    for (var i = 0; i < size; i++) {
+      for (var j = 0; j < size; j++) {
+        tileGrid[i][j].lig = j;
+        tileGrid[i][j].col = i;
+      }
+    }
+  }
+
+  void updateTilesTapAction() {
+    for (var i = 0; i < size; i++) {
+      for (var j = 0; j < size; j++) {
+        tileGrid[i][j].onTapAction = () {
+          print("${canSwap(tileGrid[i][j].lig!, tileGrid[i][j].col!)}");
+        };
+      }
+    }
   }
 }

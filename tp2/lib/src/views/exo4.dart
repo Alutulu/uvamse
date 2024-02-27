@@ -19,7 +19,8 @@ class _Exo4Screen extends State<Exo4Screen> {
 
   Tile tile = Tile(
       imageURL: 'assets/artwork_films_pokemon_4G_2022.jpg',
-      alignment: const Alignment(0, 0),
+      x: 0,
+      y: 0,
       division: 3);
 
   @override
