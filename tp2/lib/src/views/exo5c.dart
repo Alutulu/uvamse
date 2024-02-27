@@ -46,6 +46,7 @@ class _Exo5cScreen extends State<Exo5cScreen> {
                         mainAxisSpacing: 10,
                         crossAxisCount: division,
                         children: listetile.toWidgetList(),
+                        //faire une class gridview por pouvoir mettre un setstate
                       )),
                   Slider(
                     value: division.toDouble(),

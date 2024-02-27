@@ -94,9 +94,16 @@ class TileGrid {
   void updateTilesTapAction() {
     for (var i = 0; i < size; i++) {
       for (var j = 0; j < size; j++) {
-        tileGrid[i][j].onTapAction = () {
-          print("${canSwap(tileGrid[i][j].lig!, tileGrid[i][j].col!)}");
-        };
+        tileGrid[i][j].onTapAction =
+            canSwap(tileGrid[i][j].lig!, tileGrid[i][j].col!)
+                ? () {
+                    swapTile(tileGrid[i][j].lig!, tileGrid[i][j].col!);
+                    print('${tileGrid[i][j].isEmpty}');
+                    print('swap !');
+                  }
+                : () {
+                    print('pas de swap !');
+                  };
       }
     }
   }
