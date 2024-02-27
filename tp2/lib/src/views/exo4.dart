@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:tp2/src/utils/math.dart';
-import 'package:tp2/src/widgets/retourBtn.dart';
-import 'package:tp2/src/widgets/tile.dart';
+import 'package:tp2/src/class/retourBtn.dart';
+import 'package:tp2/src/class/tile.dart';
+import 'package:tp2/src/class/tileGrid.dart';
 
 class Exo4Screen extends StatefulWidget {
   const Exo4Screen({super.key});
@@ -44,6 +45,7 @@ class _Exo4Screen extends State<Exo4Screen> {
                     child: tile.toWidget())),
             Container(
               padding: const EdgeInsets.all(16),
+              width: 500,
               decoration: const BoxDecoration(color: Colors.white),
               clipBehavior: Clip.hardEdge,
               child: Transform(

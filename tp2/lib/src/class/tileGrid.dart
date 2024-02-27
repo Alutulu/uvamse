@@ -1,5 +1,6 @@
-import 'package:flutter/material.dart';
 import 'dart:math' as math;
+import 'package:flutter/material.dart';
+import 'package:tp2/src/class/tile.dart';
 
 math.Random random = math.Random();
 
@@ -8,7 +9,7 @@ class TileGrid {
   List<List<Tile>> tileGrid = [];
   String imageURL;
 
-  TileGrid(this.size, this.imageURL) {
+  TileGrid(this.size, this.imageURL, {bool withBlankTile = false}) {
     List<Tile> tileList = _getTiles();
     for (var i = 0; i < size; i++) {
       List<Tile> row = [];
@@ -17,6 +18,7 @@ class TileGrid {
       }
       tileGrid.add(row);
     }
+    if (withBlankTile) addRandomBlankTile();
   }
 
   List<Widget> toWidgetList() {
@@ -40,35 +42,20 @@ class TileGrid {
         listTiles.add(tile);
       }
     }
-
     return listTiles;
   }
-}
 
-class Tile {
-  String imageURL;
-  Alignment alignment;
-  bool isEmpty;
-  int division;
-  double sizeFactor = 1.0;
+  int index2Dto1D(int x, int y) => x * size + y;
 
-  Tile(
-      {required this.imageURL,
-      required this.alignment,
-      required this.division,
-      this.isEmpty = false}) {
-    sizeFactor = 1.0 / division;
+  List<int> index1Dto2D(int index) => [index ~/ size, index % size];
+
+  List<int> addRandomBlankTile() {
+    int idRandom = random.nextInt(size * size);
+    var coordRandom = index1Dto2D(idRandom);
+    int x = coordRandom[0];
+    int y = coordRandom[1];
+    tileGrid[x][y].imageURL = "";
+    tileGrid[x][y].isEmpty = true;
+    return [x, y];
   }
-
-  Widget toWidget() => FittedBox(
-      fit: BoxFit.fill,
-      child: ClipRect(
-        child: InkWell(
-          child: Align(
-              alignment: alignment,
-              widthFactor: sizeFactor,
-              heightFactor: sizeFactor,
-              child: Image.network(isEmpty ? 'assets/blanc.jpg' : imageURL)),
-        ),
-      ));
 }

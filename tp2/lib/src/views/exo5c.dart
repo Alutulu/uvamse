@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:tp2/src/widgets/retourBtn.dart';
-import 'package:tp2/src/widgets/tile.dart';
+import 'package:tp2/src/class/retourBtn.dart';
+import 'package:tp2/src/class/tile.dart';
+import 'package:tp2/src/class/tileGrid.dart';
 
 class Exo5cScreen extends StatefulWidget {
   const Exo5cScreen({super.key});
@@ -36,8 +37,8 @@ class _Exo5cScreen extends State<Exo5cScreen> {
                   BoutonRetour.widget(context),
                   const SizedBox(height: 15),
                   SizedBox(
-                      width: 500,
-                      height: 500,
+                      width: 400,
+                      height: 400,
                       child: GridView.count(
                         primary: false,
                         padding: const EdgeInsets.all(20),

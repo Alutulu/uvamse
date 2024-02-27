@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tp2/src/utils/math.dart';
-import 'package:tp2/src/widgets/retourBtn.dart';
+import 'package:tp2/src/class/retourBtn.dart';
+import 'package:tp2/src/class/tileGrid.dart';
 
 class Exo2Screen extends StatefulWidget {
   const Exo2Screen({super.key});
