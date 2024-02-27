@@ -68,10 +68,7 @@ class _Exo6Screen extends State<Exo6Screen> {
 
   swaptiles() {
     setState(() {
-      Tile test =
-          Tile(imageURL: 'assets/tp2/assets/artwork_films_pokemon_4G_2022.jpg');
-      listetile[0] = test.croppedImageTile();
-      print("rentré");
+
     });
   }
 
