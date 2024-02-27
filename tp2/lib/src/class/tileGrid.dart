@@ -8,6 +8,8 @@ class TileGrid {
   int size;
   List<List<Tile>> tileGrid = [];
   String imageURL;
+  int? xBlankTile;
+  int? yBlankTile;
 
   TileGrid(this.size, this.imageURL, {bool withBlankTile = false}) {
     List<Tile> tileList = _getTiles();
@@ -54,8 +56,20 @@ class TileGrid {
     var coordRandom = index1Dto2D(idRandom);
     int x = coordRandom[0];
     int y = coordRandom[1];
-    tileGrid[x][y].imageURL = "";
-    tileGrid[x][y].isEmpty = true;
+    makeTileBlank(x, y);
     return [x, y];
+  }
+
+  void makeTileBlank(int x, int y) {
+    tileGrid[x][y].isEmpty = false;
+    xBlankTile = x;
+    yBlankTile = y;
+  }
+
+  void swapTile(int x, int y) {}
+
+  void copyTile(int x1, int y1, int x2, int y2) {
+    tileGrid[x2][y2].isEmpty = true;
+    tileGrid[x2][y2].alignment.x = tileGrid[x1][y1].alignment.x;
   }
 }
