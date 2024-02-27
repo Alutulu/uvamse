@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:tp2/src/class/retourBtn.dart';
-import 'package:tp2/src/class/tile.dart';
 import 'package:tp2/src/class/tileGrid.dart';
 
 class Exo5cScreen extends StatefulWidget {

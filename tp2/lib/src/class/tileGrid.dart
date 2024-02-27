@@ -22,7 +22,6 @@ class TileGrid {
     }
     if (withBlankTile) addRandomBlankTile();
     updateTilesCoord();
-    updateTilesTapAction();
   }
 
   List<Widget> toWidgetList() {
@@ -68,14 +67,15 @@ class TileGrid {
   }
 
   void swapTile(int x, int y) {
+    print("lig $x col $y to lig $ligBlankTile col $colBlankTile");
     copyTile(x, y, ligBlankTile!, colBlankTile!);
     makeTileBlank(x, y);
   }
 
   void copyTile(int x1, int y1, int x2, int y2) {
-    tileGrid[x2][y2].isEmpty = false;
-    tileGrid[x2][y2].alignment =
-        Alignment(tileGrid[x1][y1].alignment.x, tileGrid[x1][y1].alignment.y);
+    tileGrid[y2][x2].isEmpty = false;
+    tileGrid[y2][x2].alignment =
+        Alignment(tileGrid[y1][x1].alignment.y, tileGrid[y1][x1].alignment.x);
   }
 
   bool canSwap(int x, int y) =>
@@ -87,23 +87,6 @@ class TileGrid {
       for (var j = 0; j < size; j++) {
         tileGrid[i][j].lig = j;
         tileGrid[i][j].col = i;
-      }
-    }
-  }
-
-  void updateTilesTapAction() {
-    for (var i = 0; i < size; i++) {
-      for (var j = 0; j < size; j++) {
-        tileGrid[i][j].onTapAction =
-            canSwap(tileGrid[i][j].lig!, tileGrid[i][j].col!)
-                ? () {
-                    swapTile(tileGrid[i][j].lig!, tileGrid[i][j].col!);
-                    print('${tileGrid[i][j].isEmpty}');
-                    print('swap !');
-                  }
-                : () {
-                    print('pas de swap !');
-                  };
       }
     }
   }
