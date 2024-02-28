@@ -23,8 +23,7 @@ class _Exo6Screen extends State<Exo6Screen> {
     super.initState();
     listetile =
         TileGrid(division, 'assets/bulbizarre.png', withBlankTile: true);
-    updateTilesTapAction(listetile);
-    print("lig ${listetile.ligBlankTile} col ${listetile.colBlankTile}");
+    updateTilesTapAction();
   }
 
   @override
@@ -60,18 +59,16 @@ class _Exo6Screen extends State<Exo6Screen> {
     );
   }
 
-  updateTilesTapAction(TileGrid tileGrid) {
-    for (var i = 0; i < tileGrid.size; i++) {
-      for (var j = 0; j < tileGrid.size; j++) {
-        tileGrid.tileGrid[i][j].onTapAction = tileGrid.canSwap(
-                tileGrid.tileGrid[i][j].lig!, tileGrid.tileGrid[i][j].col!)
-            ? () {
-                setState(() {
-                  tileGrid.swapTile(tileGrid.tileGrid[i][j].col!,
-                      tileGrid.tileGrid[i][j].lig!);
-                });
-              }
-            : () {};
+  updateTilesTapAction() {
+    for (var i = 0; i < listetile.size; i++) {
+      for (var j = 0; j < listetile.size; j++) {
+        listetile.tileGrid[i][j].onTapAction = () {
+          setState(() {
+            listetile.tileGrid[i][j].action();
+            // listetile.updateActions();
+            updateTilesTapAction();
+          });
+        };
       }
     }
   }

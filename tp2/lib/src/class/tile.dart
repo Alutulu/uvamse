@@ -8,8 +8,11 @@ class Tile {
   bool isEmpty;
   int division;
   double sizeFactor = 1.0;
-  int? lig;
+  int? lig; // dans l'image
   int? col;
+  int? idLig; // dans la matrice
+  int? idCol;
+  bool canSwap = false;
 
   Tile(
       {required this.imageURL,
@@ -20,6 +23,8 @@ class Tile {
     alignment = Alignment(x, y);
     sizeFactor = 1.0 / division;
   }
+
+  var action = () {};
 
   var onTapAction = () {};
 
