@@ -78,7 +78,6 @@ class TileGrid {
   }
 
   void swapTile(int x, int y) {
-    print('swap ($y, $x)');
     List<List<Tile>> newGrid = [];
     for (var i = 0; i < size; i++) {
       List<Tile> row = [];
@@ -121,15 +120,11 @@ class TileGrid {
     for (var i = 0; i < size; i++) {
       for (var j = 0; j < size; j++) {
         if (canSwap(tileGrid[i][j].idLig!, tileGrid[i][j].idCol!)) {
-          print('swap $j $i');
           tileGrid[i][j].action = () {
             swapTile(tileGrid[i][j].idLig!, tileGrid[i][j].idCol!);
           };
         } else {
-          print('pas swap $j $i');
-          tileGrid[i][j].action = () {
-            print("${tileGrid[i][j].idLig} et ${tileGrid[i][j].idCol}");
-          };
+          tileGrid[i][j].action = () {};
         }
         ;
       }
