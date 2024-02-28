@@ -7,6 +7,7 @@ import 'package:tp2/src/views/exo5b.dart';
 import 'package:tp2/src/views/exo5c.dart';
 import 'package:tp2/src/views/exo6.dart';
 import 'package:tp2/src/views/home.dart';
+import 'package:tp2/src/views/taquin.dart';
 
 final appShellNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'app shell');
 
@@ -30,6 +31,8 @@ class _App extends State<App> {
         GoRoute(path: '/5b', builder: (context, state) => const Exo5bScreen()),
         GoRoute(path: '/5c', builder: (context, state) => const Exo5cScreen()),
         GoRoute(path: '/6', builder: (context, state) => const Exo6Screen()),
+        GoRoute(
+            path: '/taquin', builder: (context, state) => const TaquinScreen()),
       ]),
     );
   }

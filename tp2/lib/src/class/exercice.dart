@@ -26,6 +26,10 @@ List<Exercice> listExercices = [
       description: "Permutation de tuile",
       title: "6A Permutation de tuile",
       path: "/6"),
+  Exercice(
+      description: "Jeu du Taquin final",
+      title: "Jeu du Taquin",
+      path: "/taquin"),
 ];
 
 class Exercice {
