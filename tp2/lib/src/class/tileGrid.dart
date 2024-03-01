@@ -1,7 +1,6 @@
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:tp2/src/class/tile.dart';
-import 'dart:collection';
 
 math.Random random = math.Random();
 
@@ -93,8 +92,6 @@ class TileGrid {
       newGrid.add(row);
     }
     tileGrid = newGrid;
-    var temp_x = ligBlankTile!;
-    var temp_y = colBlankTile!;
     makeTileBlank(x, y);
     updateTilesCoord();
     updateActions();
@@ -126,7 +123,6 @@ class TileGrid {
         } else {
           tileGrid[i][j].action = () {};
         }
-        ;
       }
     }
   }
