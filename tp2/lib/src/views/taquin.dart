@@ -70,9 +70,9 @@ class _TaquinScreen extends State<TaquinScreen> {
                                   child: Slider(
                                     value: division.toDouble(),
                                     label: division.round().toString(),
-                                    max: 10,
+                                    max: 8,
                                     min: 2,
-                                    divisions: 10,
+                                    divisions: 7,
                                     onChanged: (double value) {
                                       if (value.toInt() != division) {
                                         setState(() {
