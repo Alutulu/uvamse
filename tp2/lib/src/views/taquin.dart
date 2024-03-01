@@ -21,8 +21,8 @@ class _TaquinScreen extends State<TaquinScreen> {
   @override
   void initState() {
     super.initState();
-    listetile =
-        TileGrid(division, 'assets/lutti-pokemon.png', withBlankTile: true);
+    listetile = TileGrid(division, 'assets/lutti-pokemon.png',
+        withBlankTile: true, mustShuffle: true);
     updateTilesTapAction();
   }
 

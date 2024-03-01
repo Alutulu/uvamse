@@ -15,10 +15,12 @@ class TileGrid {
   int? idLigLastShuffled;
   int? idColLastShuffled;
 
-  TileGrid(this.size, this.imageURL, {bool withBlankTile = false}) {
+  TileGrid(this.size, this.imageURL,
+      {bool withBlankTile = false, bool mustShuffle = false}) {
     List<Tile> tileList = _getTiles();
     tileGrid = to2DList(tileList);
     if (withBlankTile) addRandomBlankTile();
+    if (mustShuffle) shuffle(15);
     updateTilesCoord();
     updateActions();
   }
@@ -80,8 +82,9 @@ class TileGrid {
 
   void swapTile(int x, int y, {bool updateShuffle = false}) {
     if (updateShuffle) {
-      if (idLigLastShuffled != null) {}
-      tileGrid[idLigLastShuffled!][idColLastShuffled!].hasSwaped = false;
+      if (idLigLastShuffled != null) {
+        tileGrid[idLigLastShuffled!][idColLastShuffled!].hasSwaped = false;
+      }
     }
     List<List<Tile>> newGrid = [];
     for (var i = 0; i < size; i++) {
@@ -99,7 +102,9 @@ class TileGrid {
     }
     tileGrid = newGrid;
     if (updateShuffle) {
-      tileGrid[ligBlankTile!][colBlankTile!].hasSwaped = true;
+      idLigLastShuffled = idLigBlankTile;
+      idColLastShuffled = idColBlankTile;
+      tileGrid[idLigLastShuffled!][idColLastShuffled!].hasSwaped = true;
     }
     makeTileBlank(x, y);
     updateTilesCoord();
