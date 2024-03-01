@@ -1,3 +1,5 @@
+
+
 import 'package:flutter/material.dart';
 import 'package:tp2/src/class/retourBtn.dart';
 import 'package:tp2/src/class/tile.dart';
@@ -28,6 +30,7 @@ class _TaquinScreen extends State<TaquinScreen> {
 
   @override
   Widget build(BuildContext context) {
+    
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
@@ -71,7 +74,8 @@ class _TaquinScreen extends State<TaquinScreen> {
                         });
                       }
                     },
-                  )
+                  ),
+                  FloatingActionButton(onPressed: shuffle(listetile))
                 ])),
       ),
     );
@@ -90,4 +94,43 @@ class _TaquinScreen extends State<TaquinScreen> {
       }
     }
   }
+
+
+shuffle (TileGrid listetile){
+  List<int> randomizer = [];
+  var alea;
+  for (var i =0; i<10; i++){
+    randomizer.clear();
+    if(listetile.idLigBlankTile!=0){
+    randomizer.add(1);
+    }
+    if (listetile.idColBlankTile!=0){
+      randomizer.add(2);
+    }
+    if(listetile.idColBlankTile!=listetile.size-1){
+      randomizer.add(3);
+    }
+    if(listetile.idLigBlankTile!=listetile.size-1){
+      randomizer.add(4);
+    }
+    alea=randomizer[ random.nextInt(randomizer.length)];
+    if (alea==1){
+      listetile.swapTile(listetile.idLigBlankTile!-1, listetile.idColBlankTile!);
+    }
+    if (alea==2){
+      listetile.swapTile(listetile.idLigBlankTile!, listetile.idColBlankTile!-1);
+    }
+    if (alea==3){
+      listetile.swapTile(listetile.idLigBlankTile!, listetile.idColBlankTile!+1);
+    }
+    if (alea==4){
+      listetile.swapTile(listetile.idLigBlankTile!+1, listetile.idColBlankTile!);
+    }
+
+
+
+
+  }
+}
+
 }
