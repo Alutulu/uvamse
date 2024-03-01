@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tp2/src/class/retourBtn.dart';
+import 'package:tp2/src/class/staticTileGrid.dart';
 import 'package:tp2/src/class/tileGrid.dart';
 
 class Exo5cScreen extends StatefulWidget {
@@ -16,7 +17,7 @@ class _Exo5cScreen extends State<Exo5cScreen> {
   double scaleValue = 1;
   static int division = 3;
 
-  var listetile = TileGrid(division, 'assets/bulbizarre.png');
+  var listetile = StaticTileGrid(division, 'assets/bulbizarre.png');
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +57,8 @@ class _Exo5cScreen extends State<Exo5cScreen> {
                     onChanged: (double value) {
                       setState(() {
                         division = value.toInt();
-                        listetile = TileGrid(division, 'assets/bulbizarre.png');
+                        listetile =
+                            StaticTileGrid(division, 'assets/bulbizarre.png');
                       });
                     },
                   )
