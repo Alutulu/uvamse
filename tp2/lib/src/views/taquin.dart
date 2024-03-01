@@ -21,8 +21,8 @@ class _TaquinScreen extends State<TaquinScreen> {
   @override
   void initState() {
     super.initState();
-    listetile =
-        TileGrid(division, 'assets/lutti-pokemon.png', withBlankTile: true);
+    listetile = TileGrid(division, 'assets/lutti-pokemon.png',
+        withBlankTile: true, mustShuffle: false);
     updateTilesTapAction();
   }
 
@@ -37,7 +37,7 @@ class _TaquinScreen extends State<TaquinScreen> {
         // child: Column(
         // children: [
         child: Padding(
-            padding: const EdgeInsets.all(8),
+            padding: const EdgeInsets.all(16),
             child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
@@ -58,7 +58,7 @@ class _TaquinScreen extends State<TaquinScreen> {
                     value: division.toDouble(),
                     label: division.round().toString(),
                     max: 10,
-                    min: 1,
+                    min: 2,
                     divisions: 10,
                     onChanged: (double value) {
                       if (value.toInt() != division) {
@@ -71,6 +71,44 @@ class _TaquinScreen extends State<TaquinScreen> {
                         });
                       }
                     },
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Text("Shuffle : "),
+                      const SizedBox(width: 30),
+                      FloatingActionButton(
+                        onPressed: () {
+                          setState(() {
+                            listetile.shuffle(1);
+                            updateTilesTapAction();
+                          });
+                        },
+                        child: const Text('x1'),
+                      ),
+                      const SizedBox(width: 30),
+                      FloatingActionButton(
+                        onPressed: () {
+                          setState(() {
+                            listetile.shuffle(3);
+                            updateTilesTapAction();
+                          });
+                        },
+                        child: const Text('x3'),
+                      ),
+                      const SizedBox(width: 30),
+                      FloatingActionButton(
+                        onPressed: () {
+                          setState(() {
+                            listetile.shuffle(10);
+                            updateTilesTapAction();
+                          });
+                        },
+                        child: const Text('x10'),
+                      ),
+                      const SizedBox(width: 30),
+                      const Text('(Press several times)')
+                    ],
                   )
                 ])),
       ),
@@ -83,7 +121,6 @@ class _TaquinScreen extends State<TaquinScreen> {
         listetile.tileGrid[i][j].onTapAction = () {
           setState(() {
             listetile.tileGrid[i][j].action();
-            // listetile.updateActions();
             updateTilesTapAction();
           });
         };
