@@ -143,14 +143,14 @@ class TileGrid {
 
   List<List<int>> getSwapableTilesCoords() {
     List<List<int>> listeCoords = [];
-    var delta_x = [0, 1, 0, -1];
-    var delta_y = [-1, 0, 1, 0];
+    var deltaX = [0, 1, 0, -1];
+    var deltaY = [-1, 0, 1, 0];
     for (var i = 0; i < 4; i++) {
-      var id_x = idLigBlankTile! + delta_x[i];
-      var id_y = idColBlankTile! + delta_y[i];
-      if (0 <= id_x && id_x < size && 0 <= id_y && id_y < size) {
-        if (!tileGrid[id_x][id_y].hasSwaped) {
-          listeCoords.add([id_x, id_y]);
+      var idX = idLigBlankTile! + deltaX[i];
+      var idY = idColBlankTile! + deltaY[i];
+      if (0 <= idX && idX < size && 0 <= idY && idY < size) {
+        if (!tileGrid[idX][idY].hasSwaped) {
+          listeCoords.add([idX, idY]);
         }
       }
     }

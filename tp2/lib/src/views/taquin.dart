@@ -44,13 +44,13 @@ class _TaquinScreen extends State<TaquinScreen> {
                   BoutonRetour.widget(context),
                   const SizedBox(height: 15),
                   SizedBox(
-                      width: 500,
-                      height: 500,
+                      width: 300,
+                      height: 300,
                       child: GridView.count(
                         primary: false,
                         padding: const EdgeInsets.all(20),
-                        crossAxisSpacing: 10,
-                        mainAxisSpacing: 10,
+                        crossAxisSpacing: 5,
+                        mainAxisSpacing: 5,
                         crossAxisCount: division,
                         children: listetile.toWidgetList(),
                       )),
