@@ -14,6 +14,7 @@ class Tile {
   int? idCol;
   bool canSwap = false;
   bool hasSwaped = false;
+  int? originalId;
 
   Tile(
       {required this.imageURL,

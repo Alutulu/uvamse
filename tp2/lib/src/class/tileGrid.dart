@@ -20,6 +20,7 @@ class TileGrid {
       {bool withBlankTile = false, bool mustShuffle = false}) {
     List<Tile> tileList = _getTiles();
     tileGrid = to2DList(tileList);
+    saveOriginalId();
     if (withBlankTile) addRandomBlankTile();
     if (mustShuffle) shuffle(15);
     updateTilesCoord();
@@ -167,5 +168,24 @@ class TileGrid {
       swapTile(listeCoords[idCoord][0], listeCoords[idCoord][1],
           updateShuffle: true);
     }
+  }
+
+  void saveOriginalId() {
+    for (var i = 0; i < size; i++) {
+      for (var j = 0; j < size; j++) {
+        tileGrid[i][j].originalId = index2Dto1D(i, j);
+      }
+    }
+  }
+
+  bool checkFinish() {
+    for (var i = 0; i < size; i++) {
+      for (var j = 0; j < size; j++) {
+        if (tileGrid[i][j].originalId != index2Dto1D(i, j)) {
+          return false;
+        }
+      }
+    }
+    return true;
   }
 }

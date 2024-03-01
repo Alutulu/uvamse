@@ -24,7 +24,7 @@ class _TaquinScreen extends State<TaquinScreen> {
   @override
   void initState() {
     super.initState();
-    listetile = TileGrid(division, 'assets/lutti-pokemon.png',
+    listetile = TileGrid(division, 'assets/evoli.png',
         withBlankTile: true, mustShuffle: false);
   }
 
@@ -78,8 +78,8 @@ class _TaquinScreen extends State<TaquinScreen> {
                                         setState(() {
                                           isShuffled = false;
                                           division = value.toInt();
-                                          listetile = TileGrid(division,
-                                              'assets/lutti-pokemon.png',
+                                          listetile = TileGrid(
+                                              division, 'assets/evoli.png',
                                               withBlankTile: true);
                                         });
                                       }
@@ -133,6 +133,7 @@ class _TaquinScreen extends State<TaquinScreen> {
                                     setState(() {
                                       if (isShuffled) {
                                         gameStarted = true;
+                                        listetile.nbDep = 0;
                                         updateTilesTapAction();
                                       } else {
                                         messageStart =
@@ -164,6 +165,13 @@ class _TaquinScreen extends State<TaquinScreen> {
             listetile.tileGrid[i][j].action();
             updateTilesTapAction();
           });
+          if (listetile.checkFinish()) {
+            messageStart =
+                "Félicitations, vous avez terminé le Taquin en ${listetile.nbDep} coups !";
+            gameStarted = false;
+            isShuffled = false;
+          }
+          ;
         };
       }
     }
