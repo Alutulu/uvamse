@@ -57,24 +57,35 @@ class _TaquinScreen extends State<TaquinScreen> {
                         crossAxisCount: division,
                         children: listetile.toWidgetList(),
                       )),
-                  Slider(
-                    value: division.toDouble(),
-                    label: division.round().toString(),
-                    max: 10,
-                    min: 2,
-                    divisions: 10,
-                    onChanged: (double value) {
-                      if (value.toInt() != division) {
-                        setState(() {
-                          isShuffled = false;
-                          division = value.toInt();
-                          listetile = TileGrid(
-                              division, 'assets/lutti-pokemon.png',
-                              withBlankTile: true);
-                          updateTilesTapAction();
-                        });
-                      }
-                    },
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      const Text("Size : "),
+                      const SizedBox(
+                        width: 15,
+                      ),
+                      Expanded(
+                        child: Slider(
+                          value: division.toDouble(),
+                          label: division.round().toString(),
+                          max: 10,
+                          min: 2,
+                          divisions: 10,
+                          onChanged: (double value) {
+                            if (value.toInt() != division) {
+                              setState(() {
+                                isShuffled = false;
+                                division = value.toInt();
+                                listetile = TileGrid(
+                                    division, 'assets/lutti-pokemon.png',
+                                    withBlankTile: true);
+                                updateTilesTapAction();
+                              });
+                            }
+                          },
+                        ),
+                      )
+                    ],
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
