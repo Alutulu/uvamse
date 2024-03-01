@@ -161,8 +161,6 @@ class TileGrid {
     for (var i = 0; i < nbSwaps; i++) {
       var listeCoords = getSwapableTilesCoords();
       var idCoord = random.nextInt(listeCoords.length);
-      print(
-          '${listeCoords[idCoord][0]} ${listeCoords[idCoord][1]} -> $idLigBlankTile $idColBlankTile');
       swapTile(listeCoords[idCoord][0], listeCoords[idCoord][1],
           updateShuffle: true);
     }
