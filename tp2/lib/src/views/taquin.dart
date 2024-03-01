@@ -17,6 +17,9 @@ class _TaquinScreen extends State<TaquinScreen> {
   double scaleValue = 1;
   int division = 3;
   late TileGrid listetile;
+  bool gameStarted = false;
+  String messageStart = "";
+  bool isShuffled = false;
 
   @override
   void initState() {
@@ -49,8 +52,8 @@ class _TaquinScreen extends State<TaquinScreen> {
                       child: GridView.count(
                         primary: false,
                         padding: const EdgeInsets.all(20),
-                        crossAxisSpacing: 5,
-                        mainAxisSpacing: 5,
+                        crossAxisSpacing: 4,
+                        mainAxisSpacing: 4,
                         crossAxisCount: division,
                         children: listetile.toWidgetList(),
                       )),
@@ -63,6 +66,7 @@ class _TaquinScreen extends State<TaquinScreen> {
                     onChanged: (double value) {
                       if (value.toInt() != division) {
                         setState(() {
+                          isShuffled = false;
                           division = value.toInt();
                           listetile = TileGrid(
                               division, 'assets/lutti-pokemon.png',
@@ -82,6 +86,7 @@ class _TaquinScreen extends State<TaquinScreen> {
                           setState(() {
                             listetile.shuffle(1);
                             updateTilesTapAction();
+                            isShuffled = true;
                           });
                         },
                         child: const Text('x1'),
@@ -92,6 +97,7 @@ class _TaquinScreen extends State<TaquinScreen> {
                           setState(() {
                             listetile.shuffle(3);
                             updateTilesTapAction();
+                            isShuffled = true;
                           });
                         },
                         child: const Text('x3'),
@@ -102,14 +108,35 @@ class _TaquinScreen extends State<TaquinScreen> {
                           setState(() {
                             listetile.shuffle(10);
                             updateTilesTapAction();
+                            isShuffled = true;
                           });
                         },
                         child: const Text('x10'),
                       ),
                       const SizedBox(width: 30),
-                      const Text('(Press several times)')
+                      const Text('(Press shuffle buttons several times)'),
+                      const SizedBox(
+                        width: 50,
+                      ),
+                      FilledButton(
+                        onPressed: () {
+                          setState(() {
+                            if (isShuffled) {
+                              gameStarted = true;
+                              messageStart = "Let's go !!";
+                            } else {
+                              messageStart = "Please shuffle before starting !";
+                            }
+                          });
+                        },
+                        child: const Text(
+                          'Start',
+                        ),
+                      ),
                     ],
-                  )
+                  ),
+                  const SizedBox(height: 15),
+                  Text(messageStart),
                 ])),
       ),
     );
