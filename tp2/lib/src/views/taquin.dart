@@ -26,7 +26,6 @@ class _TaquinScreen extends State<TaquinScreen> {
     super.initState();
     listetile = TileGrid(division, 'assets/lutti-pokemon.png',
         withBlankTile: true, mustShuffle: false);
-    updateTilesTapAction();
   }
 
   @override
@@ -57,97 +56,101 @@ class _TaquinScreen extends State<TaquinScreen> {
                         crossAxisCount: division,
                         children: listetile.toWidgetList(),
                       )),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      const Text("Size : "),
-                      const SizedBox(
-                        width: 15,
-                      ),
-                      Expanded(
-                        child: Slider(
-                          value: division.toDouble(),
-                          label: division.round().toString(),
-                          max: 10,
-                          min: 2,
-                          divisions: 10,
-                          onChanged: (double value) {
-                            if (value.toInt() != division) {
-                              setState(() {
-                                isShuffled = false;
-                                division = value.toInt();
-                                listetile = TileGrid(
-                                    division, 'assets/lutti-pokemon.png',
-                                    withBlankTile: true);
-                                updateTilesTapAction();
-                              });
-                            }
-                          },
-                        ),
-                      )
-                    ],
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Text("Shuffle : "),
-                      const SizedBox(width: 30),
-                      FloatingActionButton(
-                        onPressed: () {
-                          setState(() {
-                            listetile.shuffle(1);
-                            updateTilesTapAction();
-                            isShuffled = true;
-                          });
-                        },
-                        child: const Text('x1'),
-                      ),
-                      const SizedBox(width: 30),
-                      FloatingActionButton(
-                        onPressed: () {
-                          setState(() {
-                            listetile.shuffle(3);
-                            updateTilesTapAction();
-                            isShuffled = true;
-                          });
-                        },
-                        child: const Text('x3'),
-                      ),
-                      const SizedBox(width: 30),
-                      FloatingActionButton(
-                        onPressed: () {
-                          setState(() {
-                            listetile.shuffle(10);
-                            updateTilesTapAction();
-                            isShuffled = true;
-                          });
-                        },
-                        child: const Text('x10'),
-                      ),
-                      const SizedBox(width: 30),
-                      const Text('(Press shuffle buttons several times)'),
-                      const SizedBox(
-                        width: 50,
-                      ),
-                      FilledButton(
-                        onPressed: () {
-                          setState(() {
-                            if (isShuffled) {
-                              gameStarted = true;
-                              messageStart = "Let's go !!";
-                            } else {
-                              messageStart = "Please shuffle before starting !";
-                            }
-                          });
-                        },
-                        child: const Text(
-                          'Start',
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 15),
-                  Text(messageStart),
+                  !gameStarted
+                      ? Column(
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                const Text("Size : "),
+                                const SizedBox(
+                                  width: 15,
+                                ),
+                                Expanded(
+                                  child: Slider(
+                                    value: division.toDouble(),
+                                    label: division.round().toString(),
+                                    max: 10,
+                                    min: 2,
+                                    divisions: 10,
+                                    onChanged: (double value) {
+                                      if (value.toInt() != division) {
+                                        setState(() {
+                                          isShuffled = false;
+                                          division = value.toInt();
+                                          listetile = TileGrid(division,
+                                              'assets/lutti-pokemon.png',
+                                              withBlankTile: true);
+                                        });
+                                      }
+                                    },
+                                  ),
+                                )
+                              ],
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                const Text("Shuffle : "),
+                                const SizedBox(width: 30),
+                                FloatingActionButton(
+                                  onPressed: () {
+                                    setState(() {
+                                      listetile.shuffle(1);
+                                      isShuffled = true;
+                                    });
+                                  },
+                                  child: const Text('x1'),
+                                ),
+                                const SizedBox(width: 30),
+                                FloatingActionButton(
+                                  onPressed: () {
+                                    setState(() {
+                                      listetile.shuffle(3);
+                                      isShuffled = true;
+                                    });
+                                  },
+                                  child: const Text('x3'),
+                                ),
+                                const SizedBox(width: 30),
+                                FloatingActionButton(
+                                  onPressed: () {
+                                    setState(() {
+                                      listetile.shuffle(10);
+                                      isShuffled = true;
+                                    });
+                                  },
+                                  child: const Text('x10'),
+                                ),
+                                const SizedBox(width: 30),
+                                const Text(
+                                    '(Press shuffle buttons several times)'),
+                                const SizedBox(
+                                  width: 50,
+                                ),
+                                FilledButton(
+                                  onPressed: () {
+                                    setState(() {
+                                      if (isShuffled) {
+                                        gameStarted = true;
+                                        updateTilesTapAction();
+                                      } else {
+                                        messageStart =
+                                            "Please shuffle before starting !";
+                                      }
+                                    });
+                                  },
+                                  child: const Text(
+                                    'Start',
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(height: 15),
+                            Text(messageStart),
+                          ],
+                        )
+                      : Text('Déplacements : ${listetile.nbDep}'),
                 ])),
       ),
     );

@@ -14,6 +14,7 @@ class TileGrid {
   int? idColBlankTile;
   int? idLigLastShuffled;
   int? idColLastShuffled;
+  int nbDep = 0;
 
   TileGrid(this.size, this.imageURL,
       {bool withBlankTile = false, bool mustShuffle = false}) {
@@ -105,6 +106,8 @@ class TileGrid {
       idLigLastShuffled = idLigBlankTile;
       idColLastShuffled = idColBlankTile;
       tileGrid[idLigLastShuffled!][idColLastShuffled!].hasSwaped = true;
+    } else {
+      nbDep++;
     }
     makeTileBlank(x, y);
     updateTilesCoord();
