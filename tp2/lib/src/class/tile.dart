@@ -13,6 +13,7 @@ class Tile {
   int? idLig; // dans la matrice
   int? idCol;
   bool canSwap = false;
+  bool hasSwaped = false;
 
   Tile(
       {required this.imageURL,

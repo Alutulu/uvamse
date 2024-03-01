@@ -12,6 +12,8 @@ class TileGrid {
   int? colBlankTile;
   int? idLigBlankTile;
   int? idColBlankTile;
+  int? idLigLastShuffled;
+  int? idColLastShuffled;
 
   TileGrid(this.size, this.imageURL, {bool withBlankTile = false}) {
     List<Tile> tileList = _getTiles();
@@ -76,7 +78,11 @@ class TileGrid {
     idColBlankTile = y;
   }
 
-  void swapTile(int x, int y) {
+  void swapTile(int x, int y, {bool updateShuffle = false}) {
+    if (updateShuffle) {
+      if (idLigLastShuffled != null) {}
+      tileGrid[idLigLastShuffled!][idColLastShuffled!].hasSwaped = false;
+    }
     List<List<Tile>> newGrid = [];
     for (var i = 0; i < size; i++) {
       List<Tile> row = [];
@@ -92,6 +98,9 @@ class TileGrid {
       newGrid.add(row);
     }
     tileGrid = newGrid;
+    if (updateShuffle) {
+      tileGrid[ligBlankTile!][colBlankTile!].hasSwaped = true;
+    }
     makeTileBlank(x, y);
     updateTilesCoord();
     updateActions();
@@ -124,6 +133,33 @@ class TileGrid {
           tileGrid[i][j].action = () {};
         }
       }
+    }
+  }
+
+  List<List<int>> getSwapableTilesCoords() {
+    List<List<int>> listeCoords = [];
+    var delta_x = [0, 1, 0, -1];
+    var delta_y = [-1, 0, 1, 0];
+    for (var i = 0; i < 4; i++) {
+      var id_x = idLigBlankTile! + delta_x[i];
+      var id_y = idColBlankTile! + delta_y[i];
+      if (0 <= id_x && id_x < size && 0 <= id_y && id_y < size) {
+        if (!tileGrid[id_x][id_y].hasSwaped) {
+          listeCoords.add([id_x, id_y]);
+        }
+      }
+    }
+    return listeCoords;
+  }
+
+  void shuffle(int nbSwaps) {
+    for (var i = 0; i < nbSwaps; i++) {
+      var listeCoords = getSwapableTilesCoords();
+      var idCoord = random.nextInt(listeCoords.length);
+      print(
+          '${listeCoords[idCoord][0]} ${listeCoords[idCoord][1]} -> $idLigBlankTile $idColBlankTile');
+      swapTile(listeCoords[idCoord][0], listeCoords[idCoord][1],
+          updateShuffle: true);
     }
   }
 }
