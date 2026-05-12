@@ -1,4 +1,7 @@
 # uvamse
+
+Projet étudiant d'une mobile app en finissant par un jeu de Taquin.
+
 UV AMSE - IMT NORD EUROPE
 
 **Membres** :
